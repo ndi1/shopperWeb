@@ -1,0 +1,133 @@
+.loginForm{
+    border-radius: 2rem;
+}
+
+.loginFormBack{
+    background-color: bisque;
+}
+
+.loginPage{
+    background-color: #ba4343;
+}
+
+.mainHeader{
+    background-color: #ba4343;
+}
+
+.navbar-nav{
+    float:none;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+
+}
+
+.navbar-nav >li{
+    display: inline-block;
+    float:none;
+    padding-left: 30px;
+}
+
+.loginImage{
+    border-radius: 2rem 0 0 2rem;
+}
+
+.navText{
+    color: white;
+}
+
+.mainLogo{
+    padding-left: 15px;
+}
+
+.centerReset{
+    margin:0 auto;
+
+}
+
+.setRight{
+    float:right
+}
+
+.resetFont{
+    font-weight: bold;
+}
+
+.labels{
+    display: inline-block;
+    width:150px;
+}
+
+.centered{
+    margin: auto;
+    width: 35%;
+    border: 2px solid black;
+    padding: 10px;
+    background-color: #F0F0F0;
+}
+
+.foodFormList{
+    list-style-type: none;
+}
+
+.bot{
+    border-bottom: 2px solid black;
+}
+
+.aligns{
+    display: inline-block;
+    width:100px;
+    text-align: left;
+}
+
+.buttons{
+    text-align: center;
+}
+
+.nutritionGrid{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 65%;
+}
+
+.lowerNav{
+    background-color: #2355a6;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.nutritionInputs{
+    border-radius: 5px;
+}
+
+.navStyles{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: white;
+}
+
+.logo{
+    font-family:'Galada',cursive;
+    font-size: 50px;
+}
+
+.headers{
+    font-family:'Galada',cursive;
+    font-size: 45px;
+    text-color: white;
+    text-decoration: none;
+}
+
+.centerForms{
+    margin: auto;
+    width: 24%;
+    border: 2px solid black;
+    padding: 10px;
+    background-color: #F0F0F0;
+    text-align: center;
+}
+
