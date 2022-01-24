@@ -78,4 +78,10 @@ public class UserController {
     }
 
 
+    @GetMapping("/home")
+    public String showHome(){
+
+        return "home";
+    }
+
 }
