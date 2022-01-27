@@ -38,7 +38,7 @@
                 <div class="navText">Calendar</div>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="items.html"><img src="../static/images/shop.svg"
+                <a class="nav-link active" th:href="@{/myItems}"><img src="../static/images/shop.svg"
                                                                   th:src="@{images/shop.svg}"></a>
                 <div class="navText">Items</div>
             </li>
@@ -64,6 +64,7 @@
             <tr>
                 <th>Food Name</th>
                 <th>Food Description</th>
+                <th>Price</th>
                 <th>Calories</th>
                 <th>Carbs</th>
                 <th>Fats</th>
@@ -76,10 +77,11 @@
                 <tr>
                     <td>[[${food.foodName}]]</td>
                     <td>[[${food.foodDesc}]]</td>
-                    <td>[[${food.calories}]]</td>
-                    <td>[[${food.carbs}]]</td>
-                    <td>[[${food.fats}]]</td>
-                    <td>[[${food.protein}]]</td>
+                    <td>$[[${food.price}]]</td>
+                    <td>[[${food.calories}]] g</td>
+                    <td>[[${food.carbs}]] g</td>
+                    <td>[[${food.fats}]] g</td>
+                    <td>[[${food.protein}]] g</td>
                                     <td>
                         <a class="h4 mr-3" th:href="@{'/myFoods/edit/' +${food.id}}">Edit</a>
                         <a class="h4" th:href="@{'/myFoods/delete/' +${food.id}}">Delete</a>

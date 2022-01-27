@@ -28,6 +28,16 @@ import javax.persistence.*;
         private Double servings;
         @Column
         private String servType;
+        @Column
+        private Double price;
+
+        public Double getPrice() {
+            return price;
+        }
+
+        public void setPrice(Double price) {
+            this.price = price;
+        }
 
         public Double getServingSize() {
             return servingSize;
