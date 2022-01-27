@@ -23,9 +23,19 @@ import javax.persistence.*;
         @Column
         private Double protein;
         @Column
+        private Double servingSize;
+        @Column
         private Double servings;
         @Column
         private String servType;
+
+        public Double getServingSize() {
+            return servingSize;
+        }
+
+        public void setServingSize(Double servingSize) {
+            this.servingSize = servingSize;
+        }
 
         public Integer getId() {
             return id;

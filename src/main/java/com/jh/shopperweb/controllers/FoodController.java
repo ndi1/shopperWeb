@@ -2,12 +2,7 @@ package com.jh.shopperweb.controllers;
 
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.food.FoodNotFoundException;
-import com.jh.shopperweb.food.FoodRepository;
 import com.jh.shopperweb.food.FoodService;
-import com.jh.shopperweb.user.User;
-import com.jh.shopperweb.user.UserNotFoundException;
-import com.jh.shopperweb.user.UserRepository;
-import com.jh.shopperweb.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +39,7 @@ public class FoodController {
         return "redirect:/myFoods";
     }
 
-    @GetMapping("/foods/edit/{id}")
+    @GetMapping("/myFoods/edit/{id}")
     public String showFoodEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Food food = service.get(id);
