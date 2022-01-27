@@ -31,21 +31,21 @@ public class FoodController {
     }
 
 
-    @GetMapping("/myFoods/new")
-    public String showNewForm(Model model){
+    @GetMapping("/addFoods")
+    public String showNewFoodForm(Model model){
         model.addAttribute("food",new Food());
         model.addAttribute("pageTitle","Add New Food");
-        return "user_form";
+        return "addFoods";
     }
 
     @PostMapping("/myFoods/save")
-    public String saveUser(Food food){
+    public String saveFood(Food food){
         service.save(food);
         return "redirect:/myFoods";
     }
 
     @GetMapping("/foods/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+    public String showFoodEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Food food = service.get(id);
             model.addAttribute("food", food);
