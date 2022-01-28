@@ -39,12 +39,12 @@ public class FoodController {
         return "redirect:/myFoods";
     }
 
-    @GetMapping("/myFoods/edit/{id}")
-    public String showFoodEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+    @GetMapping("/myFoods/edit/{foodId}")
+    public String showFoodEditForm(@PathVariable("foodId") Integer foodId, Model model, RedirectAttributes ra) {
         try {
-            Food food = service.get(id);
+            Food food = service.get(foodId);
             model.addAttribute("food", food);
-            model.addAttribute("pageTitle", "Edit Food (ID: " + id + ")");
+            model.addAttribute("pageTitle", "Edit Food (ID: " + foodId + ")");
             return "addFoods";
         } catch (FoodNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
@@ -53,11 +53,11 @@ public class FoodController {
         }
     }
 
-    @GetMapping("/myFoods/delete/{id}")
-    public String deleteFood(@PathVariable("id") Integer id, RedirectAttributes ra){
+    @GetMapping("/myFoods/delete/{foodId}")
+    public String deleteFood(@PathVariable("foodId") Integer foodId, RedirectAttributes ra){
         try {
-            service.delete(id);
-            ra.addFlashAttribute("message", "The Food ID " + id + " has been deleted.");
+            service.delete(foodId);
+            ra.addFlashAttribute("message", "The Food ID " + foodId + " has been deleted.");
 
         } catch (FoodNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());

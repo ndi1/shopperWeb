@@ -41,12 +41,12 @@ public class ItemController {
         return "redirect:/myItems";
     }
 
-    @GetMapping("/myItems/edit/{id}")
-    public String showItemEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+    @GetMapping("/myItems/edit/{itemId}")
+    public String showItemEditForm(@PathVariable("itemId") Integer itemId, Model model, RedirectAttributes ra) {
         try {
-            Item item = service.get(id);
+            Item item = service.get(itemId);
             model.addAttribute("item", item);
-            model.addAttribute("pageTitle", "Edit Item (ID: " + id + ")");
+            model.addAttribute("pageTitle", "Edit Item (ID: " + itemId + ")");
             return "addItems";
         } catch (ItemNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
@@ -55,11 +55,11 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/myItems/delete/{id}")
-    public String deleteItem(@PathVariable("id") Integer id, RedirectAttributes ra) {
+    @GetMapping("/myItems/delete/{itemId}")
+    public String deleteItem(@PathVariable("itemId") Integer itemId, RedirectAttributes ra) {
         try {
-            service.delete(id);
-            ra.addFlashAttribute("message", "The Item ID " + id + " has been deleted.");
+            service.delete(itemId);
+            ra.addFlashAttribute("message", "The Item ID " + itemId + " has been deleted.");
 
         } catch (ItemNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());

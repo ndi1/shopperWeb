@@ -28,7 +28,7 @@ public class UserRepositoryTests {
     User savedUser = repo.save(user);
 
     Assertions.assertThat(savedUser).isNotNull();
-    Assertions.assertThat(savedUser.getId()).isGreaterThan(0);
+    Assertions.assertThat(savedUser.getUserId()).isGreaterThan(0);
 }
 
 @Test

@@ -15,7 +15,7 @@
 
 <div class="p-4 mainHeader text-white text-center">
     <h1><a th:href="@{/home}" class="headers" style="color: white;text-decoration: none"> Shopper </a> <img class="mainLogo" src="../static/images/logo.png"
-                                                                                                          th:src="@{images/logo.png}"></h1>
+                                                                                                            th:src="@{images/logo.png}"></h1>
 
 </div>
 
@@ -23,8 +23,8 @@
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link active" href="recipes.html"><img src="../static/images/journal-richtext.svg"
-                                                                    th:src="@{images/journal-richtext.svg}"></a>
+                <a class="nav-link active" th:href="@{/myRecipes}"><img src="../static/images/journal-richtext.svg"
+                                                                        th:src="@{images/journal-richtext.svg}"></a>
                 <div class="navText">Recipes</div>
             </li>
             <li class="nav-item">
@@ -39,7 +39,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href="@{/myItems}"><img src="../static/images/shop.svg"
-                                                                  th:src="@{images/shop.svg}"></a>
+                                                                      th:src="@{images/shop.svg}"></a>
                 <div class="navText">Items</div>
             </li>
             <li class="nav-item">
@@ -78,13 +78,13 @@
                     <td>[[${food.foodName}]]</td>
                     <td>[[${food.foodDesc}]]</td>
                     <td>$[[${food.price}]]</td>
-                    <td>[[${food.calories}]] g</td>
+                    <td>[[${food.calories}]] </td>
                     <td>[[${food.carbs}]] g</td>
                     <td>[[${food.fats}]] g</td>
                     <td>[[${food.protein}]] g</td>
                                     <td>
-                        <a class="h4 mr-3" th:href="@{'/myFoods/edit/' +${food.id}}">Edit</a>
-                        <a class="h4" th:href="@{'/myFoods/delete/' +${food.id}}">Delete</a>
+                        <a class="h4 mr-3" th:href="@{'/myFoods/edit/' +${food.foodId}}">Edit</a>
+                        <a class="h4" th:href="@{'/myFoods/delete/' +${food.foodId}}">Delete</a>
                     </td>
                 </tr>
             </th:block>

@@ -1,15 +1,20 @@
 package com.jh.shopperweb.food;
 
+
+import com.jh.shopperweb.recipe.Recipe;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
-    @Entity
+@Entity
     @Table(name = "foods")
     public class Food {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer id;
+        private Integer foodId;
         @Column
         private String foodName;
         @Column
@@ -30,8 +35,26 @@ import javax.persistence.*;
         private String servType;
         @Column
         private Double price;
+    @ManyToMany(mappedBy = "foods")
+    private List<Recipe> recipes = new ArrayList<>();
 
-        public Double getPrice() {
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Integer getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
+    }
+
+    public Double getPrice() {
             return price;
         }
 
@@ -45,14 +68,6 @@ import javax.persistence.*;
 
         public void setServingSize(Double servingSize) {
             this.servingSize = servingSize;
-        }
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
         }
 
         public String getFoodName() {

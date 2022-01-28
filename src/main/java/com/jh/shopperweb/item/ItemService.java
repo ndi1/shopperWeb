@@ -20,20 +20,17 @@ public class ItemService {
         repo.save(item);
     }
 
-    public Item get(Integer id) throws ItemNotFoundException {
-        Optional<Item> result = repo.findById(id);
+    public Item get(Integer itemId) throws ItemNotFoundException {
+        Optional<Item> result = repo.findById(itemId);
         if (result.isPresent()) {
             return result.get();
         }
-        throw new ItemNotFoundException("Could not find Item with ID " + id);
+        throw new ItemNotFoundException("Could not find Item with ID " + itemId);
     }
 
-    public void delete(Integer id) throws ItemNotFoundException {
-        Long count = repo.countById(id);
-        if (count == null || count == 0) {
-            throw new ItemNotFoundException("Could not find Item with ID " + id);
-        }
-        repo.deleteById(id);
+    public void delete(Integer itemId) throws ItemNotFoundException {
+
+        repo.deleteById(itemId);
 
     }
 }

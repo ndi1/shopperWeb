@@ -20,20 +20,17 @@ public class FoodService {
         repo.save(food);
     }
 
-    public Food get(Integer id) throws FoodNotFoundException {
-        Optional<Food> result = repo.findById(id);
+    public Food get(Integer foodId) throws FoodNotFoundException {
+        Optional<Food> result = repo.findById(foodId);
         if (result.isPresent()){
             return result.get();
         }
-        throw new FoodNotFoundException("Could not find food with ID "+id);
+        throw new FoodNotFoundException("Could not find food with ID "+foodId);
     }
 
-    public void delete(Integer id) throws FoodNotFoundException {
-        Long count = repo.countById(id);
-        if (count == null || count ==0){
-            throw new FoodNotFoundException("Could not find food with ID "+id);
-        }
-        repo.deleteById(id);
+    public void delete(Integer foodId) throws FoodNotFoundException {
+
+        repo.deleteById(foodId);
 
     }
 }
