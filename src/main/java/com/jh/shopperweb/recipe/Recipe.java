@@ -17,7 +17,7 @@ public class Recipe {
     private String recipeName;
     @Column
     private String recipeDesc;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany()
     @JoinTable(
             name = "recipes_foods",
             joinColumns = { @JoinColumn(name = "recipeId") },
