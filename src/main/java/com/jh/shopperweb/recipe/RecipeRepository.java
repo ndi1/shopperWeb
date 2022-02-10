@@ -1,13 +1,16 @@
 package com.jh.shopperweb.recipe;
 
-import com.jh.shopperweb.food.Food;
+
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface RecipeRepository extends CrudRepository<Recipe,Integer> {
 
-
+    @Query(value = "Select * from recipes r where r.recipe_name like %:keyword% or r.recipe_desc like %:keyword%", nativeQuery = true)
+    List<Recipe> findByKeyword(@Param("keyword") String keyword);
 
 }

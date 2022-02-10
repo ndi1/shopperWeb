@@ -3,6 +3,7 @@ package com.jh.shopperweb.recipe;
 
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.food.FoodRepository;
+import com.jh.shopperweb.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,8 @@ public class RecipeService {
         return foods;
     }
 
+    public List<Recipe> findByKeyword(String keyword){
+        return repo.findByKeyword(keyword);
+    }
 
 }

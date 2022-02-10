@@ -29,10 +29,16 @@ public class RecipeController {
 
 
     @GetMapping("/myRecipes")
-    public String showRecipeList(Model model){
+    public String showRecipeList(Model model, String keyword){
 
-        List<Recipe> listRecipe = service.listAll();
-                model.addAttribute("listRecipes",listRecipe);
+        if (keyword != null){
+            model.addAttribute("listRecipes",service.findByKeyword(keyword));
+        }
+        else{
+            List<Recipe> listRecipes = service.listAll();
+            model.addAttribute("listRecipes",listRecipes);
+        }
+
         return "myRecipes";
     }
 
@@ -50,9 +56,16 @@ public class RecipeController {
     }
 
     @GetMapping("/myRecipes/new")
-    public String showNewRecipeForm(Model model){
-        List<Food> listFoods = foodService.listAll();
-        model.addAttribute("listFoods",listFoods);
+    public String showNewRecipeForm(Model model, String keyword){
+
+        if (keyword != null){
+            model.addAttribute("listFoods",foodService.findByKeyword(keyword));
+        }
+        else{
+            List<Food> listFoods = foodService.listAll();
+            model.addAttribute("listFoods",listFoods);
+        }
+
         model.addAttribute("recipe",new Recipe());
         model.addAttribute("pageTitle","Add New Recipe");
         return "addRecipes";
