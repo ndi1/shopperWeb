@@ -19,11 +19,21 @@ public class FoodController {
 
 
     @GetMapping("/myFoods")
-    public String showFoodList(Model model){
-        List<Food> listFoods = service.listAll();
-        model.addAttribute("listFoods",listFoods);
+    public String showFoodList(Model model, String keyword){
+
+
+        if (keyword != null){
+            model.addAttribute("listFoods",service.findByKeyword(keyword));
+        }
+        else{
+            List<Food> listFoods = service.listAll();
+            model.addAttribute("listFoods",listFoods);
+        }
+
         return "myFoods";
     }
+
+
 
 
     @GetMapping("/addFoods")

@@ -3,6 +3,7 @@ package com.jh.shopperweb.controllers;
 
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.food.FoodNotFoundException;
+import com.jh.shopperweb.food.FoodService;
 import com.jh.shopperweb.recipe.Recipe;
 import com.jh.shopperweb.recipe.RecipeNotFoundException;
 import com.jh.shopperweb.recipe.RecipeService;
@@ -23,12 +24,15 @@ public class RecipeController {
     @Autowired
     private RecipeService service;
 
+    @Autowired
+    private FoodService foodService;
+
 
     @GetMapping("/myRecipes")
     public String showRecipeList(Model model){
 
         List<Recipe> listRecipe = service.listAll();
-        model.addAttribute("listRecipes",listRecipe);
+                model.addAttribute("listRecipes",listRecipe);
         return "myRecipes";
     }
 
@@ -47,17 +51,13 @@ public class RecipeController {
 
     @GetMapping("/myRecipes/new")
     public String showNewRecipeForm(Model model){
+        List<Food> listFoods = foodService.listAll();
+        model.addAttribute("listFoods",listFoods);
         model.addAttribute("recipe",new Recipe());
         model.addAttribute("pageTitle","Add New Recipe");
         return "addRecipes";
     }
 
-    @GetMapping("/myRecipes/foods/{recipeId}")
-    public String showFoods(@PathVariable("recipeId") Integer recipeId, Model model){
-        List<Food> listFoods = service.findAllFoods(recipeId);
-    model.addAttribute("listFoods",listFoods);
-    return "recipeFoods";
-    }
 
     @PostMapping("/myRecipes/save")
     public String saveRecipes(Recipe recipe){
@@ -65,7 +65,21 @@ public class RecipeController {
         return "redirect:/myRecipes";
     }
 
+    @GetMapping("/myRecipes/edit/{recipeId}")
+    public String showRecipeEditForm(@PathVariable("recipeId") Integer recipeId, Model model, RedirectAttributes ra) {
+        try {
+            Recipe recipe = service.get(recipeId);
+            List<Food> listFoods = service.findAllFoods(recipeId);
+            model.addAttribute("listFoods", listFoods);
+            model.addAttribute("recipe", recipe);
+            model.addAttribute("pageTitle", "Edit Recipe (ID: " + recipeId + ")");
+            return "addRecipes";
+        } catch (RecipeNotFoundException e) {
+            ra.addFlashAttribute("message", e.getMessage());
+            return "redirect:/myRecipes";
 
+        }
+    }
 
 
 }

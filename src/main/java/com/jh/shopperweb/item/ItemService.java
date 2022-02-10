@@ -1,6 +1,7 @@
 package com.jh.shopperweb.item;
 
 
+import com.jh.shopperweb.food.Food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,4 +34,9 @@ public class ItemService {
         repo.deleteById(itemId);
 
     }
+
+    public List<Item> findByKeyword(String keyword){
+        return repo.findByKeyword(keyword);
+    }
+
 }

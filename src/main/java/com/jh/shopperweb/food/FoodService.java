@@ -33,4 +33,12 @@ public class FoodService {
         repo.deleteById(foodId);
 
     }
+
+    public List<Food> findByKeyword(String keyword){
+        return repo.findByKeyword(keyword);
+    }
+
+
+
+
 }

@@ -131,3 +131,7 @@ a:hover{
     text-align: center;
 }
 
+.recipeFoodAdd{
+    white-space: nowrap;
+    width: auto;
+}

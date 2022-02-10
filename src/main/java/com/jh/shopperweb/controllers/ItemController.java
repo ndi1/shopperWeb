@@ -1,6 +1,7 @@
 package com.jh.shopperweb.controllers;
 
 
+import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.item.Item;
 import com.jh.shopperweb.item.ItemNotFoundException;
 import com.jh.shopperweb.item.ItemService;
@@ -21,9 +22,16 @@ public class ItemController {
 
 
     @GetMapping("/myItems")
-    public String showItemList(Model model) {
-        List<Item> listItems = service.listAll();
-        model.addAttribute("listItems", listItems);
+    public String showItemList(Model model, String keyword) {
+
+        if (keyword != null){
+            model.addAttribute("listItems",service.findByKeyword(keyword));
+        }
+        else{
+            List<Item> listItems = service.listAll();
+            model.addAttribute("listItems",listItems);
+        }
+
         return "items";
     }
 

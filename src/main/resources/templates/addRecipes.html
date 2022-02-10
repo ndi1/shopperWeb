@@ -51,7 +51,9 @@
     </div>
 
 </nav>
-
+<div class="container">
+    <div class="row">
+        <div class="col">
 <form th:action="@{/myRecipes/save}" method="post" th:object="${recipe}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{recipeId}">
@@ -68,14 +70,47 @@
                 <input type="text" th:field="*{recipeDesc}" class="form-control"/>
             </div>
         </div>
+
         <div class="text-center">
             <button type="submit" class="btn btn-primary m-2">Save</button>
             <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
         </div>
     </div>
-
 </form>
+        </div>
+        <div class="col">
+            <div>
+                <table class="table table-striped table-dark recipeFoodAdd">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Food Description</th>
+                        <th>Price</th>
+                        <th>Calories</th>
+                        <th>Carbs</th>
+                        <th>Fats</th>
+                        <th>Protein</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="food : ${listFoods}">
+                        <tr>
+                            <td>[[${food.foodName}]]</td>
+                            <td>[[${food.foodDesc}]]</td>
+                            <td>$[[${food.price}]]</td>
+                            <td>[[${food.calories}]] </td>
+                            <td>[[${food.carbs}]] g</td>
+                            <td>[[${food.fats}]] g</td>
+                            <td>[[${food.protein}]] g</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
