@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class RecipeController {
@@ -42,6 +45,25 @@ public class RecipeController {
         return "myRecipes";
     }
 
+    @GetMapping("/myRecipes/addFoods/add/{recipeId}/{foodId}")
+    public String addFoodToRecipe(@PathVariable("recipeId")Integer recipeId, @PathVariable("foodId") Integer foodId) throws FoodNotFoundException {
+        try {
+            Recipe recipe = service.get(recipeId);
+            Food food = foodService.get(foodId);
+            Set<Food> recipeFoods = new HashSet<Food>();
+            recipeFoods = recipe.getFoods();
+            recipeFoods.add(food);
+            recipe.setFoods(recipeFoods);
+            service.save(recipe);
+            return "redirect:/myRecipes/addFoods/"+recipeId;
+        } catch (RecipeNotFoundException e) {
+            e.printStackTrace();
+            return "myRecipes";
+        }
+
+
+    }
+
     @GetMapping("/myRecipes/delete/{recipeId}")
     public String deleteRecipe(@PathVariable("recipeId") Integer recipeId, RedirectAttributes ra){
         try {
@@ -56,15 +78,8 @@ public class RecipeController {
     }
 
     @GetMapping("/myRecipes/new")
-    public String showNewRecipeForm(Model model, String keyword){
+    public String showNewRecipeForm(Model model){
 
-        if (keyword != null){
-            model.addAttribute("listFoods",foodService.findByKeyword(keyword));
-        }
-        else{
-            List<Food> listFoods = foodService.listAll();
-            model.addAttribute("listFoods",listFoods);
-        }
 
         model.addAttribute("recipe",new Recipe());
         model.addAttribute("pageTitle","Add New Recipe");
@@ -75,8 +90,36 @@ public class RecipeController {
     @PostMapping("/myRecipes/save")
     public String saveRecipes(Recipe recipe){
         service.save(recipe);
-        return "redirect:/myRecipes";
+
+
+
+        return "redirect:/myRecipes/addFoods/"+recipe.getRecipeId();
     }
+
+    @GetMapping("/myRecipes/addFoods/{recipeId}")
+    public String showAddFoodsToRecipe(@PathVariable("recipeId")Integer recipeId, Model model, String keyword){
+        try {
+            Recipe recipe = service.get(recipeId);
+
+            if (keyword != null){
+                model.addAttribute("listFoods",foodService.findByKeyword(keyword));
+            }
+            else{
+                List<Food> listFoods = foodService.listAll();
+                model.addAttribute("listFoods",listFoods);
+            }
+
+            model.addAttribute("recipe", recipe);
+            model.addAttribute("pageTitle", "Edit Recipe (ID: " + recipeId + ")");
+            return "recipeFoods";
+        } catch (RecipeNotFoundException e) {
+            return "redirect:/myRecipes";
+
+        }
+
+
+    }
+
 
     @GetMapping("/myRecipes/edit/{recipeId}")
     public String showRecipeEditForm(@PathVariable("recipeId") Integer recipeId, Model model, RedirectAttributes ra) {

@@ -5,7 +5,9 @@ import com.jh.shopperweb.recipe.Recipe;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -36,13 +38,13 @@ import java.util.List;
         @Column
         private Double price;
     @ManyToMany(mappedBy = "foods")
-    private List<Recipe> recipes = new ArrayList<>();
+    private Set<Recipe> recipes = new HashSet<>();
 
-    public List<Recipe> getRecipes() {
+    public Set<Recipe> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
+    public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
 

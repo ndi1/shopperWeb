@@ -4,7 +4,9 @@ import com.jh.shopperweb.food.Food;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "recipes")
@@ -23,10 +25,18 @@ public class Recipe {
             joinColumns = { @JoinColumn(name = "recipeId") },
             inverseJoinColumns = { @JoinColumn(name = "foodId") }
     )
-    List<Food> foods = new ArrayList<>();
+    Set<Food> foods = new HashSet<>();
 
     public Integer getRecipeId() {
         return recipeId;
+    }
+
+    public Set<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
     }
 
     public void setRecipeId(Integer recipeId) {
@@ -49,11 +59,5 @@ public class Recipe {
         this.recipeDesc = recipeDesc;
     }
 
-    public List<Food> getFoods() {
-        return foods;
-    }
 
-    public void setFoods(List<Food> foods) {
-        this.foods = foods;
-    }
 }

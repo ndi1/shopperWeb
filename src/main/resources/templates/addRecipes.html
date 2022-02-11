@@ -1,71 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Add Recipe</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="/css/page.css" th:href="@{/css/page.css}"/>
+<div th:replace="header :: myHeader"></div>
 
-</head>
-<body>
-
-<div class="p-4 mainHeader text-white text-center">
-    <h1><a th:href="@{/home}" class="headers" style="color: white;text-decoration: none"> Shopper </a> <img class="mainLogo" src="../static/images/logo.png"
-                                                                                                            th:src="@{/images/logo.png}"></h1>
-
-</div>
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark navigation">
-    <div class="container-fluid">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" th:href="@{/myRecipes}"><img src="../static/images/journal-richtext.svg"
-                                                                        th:src="@{/images/journal-richtext.svg}"></a>
-                <div class="navText">Recipes</div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" th:href="@{/myFoods}"><img src="../static/images/bag.svg"
-                                                                      th:src="@{/images/bag.svg}"></a>
-                <div class="navText">Foods</div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="calendar.html"><img src="../static/images/calendar-week.svg"
-                                                                     th:src="@{/images/calendar-week.svg}"></a>
-                <div class="navText">Calendar</div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" th:href="@{/myItems}"><img src="../static/images/shop.svg"
-                                                                      th:src="@{/images/shop.svg}"></a>
-                <div class="navText">Items</div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="list.html"><img src="../static/images/receipt.svg.svg"
-                                                                 th:src="@{/images/receipt.svg}"></a>
-                <div class="navText">My List</div>
-            </li>
-        </ul>
-    </div>
-
-</nav>
-<div class="container">
-    <div class="row">
-        <div class="col">
 <form th:action="@{/myRecipes/save}" method="post" th:object="${recipe}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{recipeId}">
     <div class="border border-secondary rounded p-3">
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Food Name</label>
+            <label class="col-sm-4 col-form-label">Recipe Name</label>
             <div class="col-sm-8">
                 <input type="text" th:field="*{recipeName}" class="form-control"/>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Food Description</label>
+            <label class="col-sm-4 col-form-label">Recipe Description</label>
             <div class="col-sm-8">
                 <input type="text" th:field="*{recipeDesc}" class="form-control"/>
             </div>
@@ -73,46 +21,11 @@
 
         <div class="text-center">
             <button type="submit" class="btn btn-primary m-2">Save</button>
-            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+            <button type="reset" class="btn btn-secondary m-2" ><a th:href="@{/myRecipes}" class="navStyles">Cancel</a></button>
         </div>
     </div>
 </form>
-        </div>
-        <div class="col">
-            <div>
-                <form th:action="@{/myRecipes/new}">
-                    <input id="foodsRecipesSearch" type="text" name="keyword">
-                    <button type="submit">Search</button>
-                </form>
-                <table class="table table-striped table-dark recipeFoodAdd">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Food Name</th>
-                        <th>Food Description</th>
-                        <th>Price</th>
-                        <th>Calories</th>
-                        <th>Carbs</th>
-                        <th>Fats</th>
-                        <th>Protein</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <th:block th:each="food : ${listFoods}">
-                        <tr>
-                            <td>[[${food.foodName}]]</td>
-                            <td>[[${food.foodDesc}]]</td>
-                            <td>$[[${food.price}]]</td>
-                            <td>[[${food.calories}]] </td>
-                            <td>[[${food.carbs}]] g</td>
-                            <td>[[${food.fats}]] g</td>
-                            <td>[[${food.protein}]] g</td>
-                        </tr>
-                    </th:block>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

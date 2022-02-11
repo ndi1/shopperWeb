@@ -2,6 +2,9 @@ package com.jh.shopperweb.food;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,10 @@ public class FoodService {
         return (List<Food>) repo.findAll();
     }
 
+    public Page<Food> findPage(int pageNumber){
+        Pageable pageable = PageRequest.of(pageNumber-1,10);
+        return repo.findAll(pageable);
+    }
 
     public void save(Food food) {
         repo.save(food);
