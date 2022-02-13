@@ -19,7 +19,7 @@ public class Recipe {
     private String recipeName;
     @Column
     private String recipeDesc;
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "recipes_foods",
             joinColumns = { @JoinColumn(name = "recipeId") },

@@ -64,6 +64,8 @@ public class RecipeController {
 
     }
 
+
+
     @GetMapping("/myRecipes/delete/{recipeId}")
     public String deleteRecipe(@PathVariable("recipeId") Integer recipeId, RedirectAttributes ra){
         try {
@@ -89,9 +91,8 @@ public class RecipeController {
 
     @PostMapping("/myRecipes/save")
     public String saveRecipes(Recipe recipe){
+
         service.save(recipe);
-
-
 
         return "redirect:/myRecipes/addFoods/"+recipe.getRecipeId();
     }
@@ -129,13 +130,42 @@ public class RecipeController {
             model.addAttribute("listFoods", listFoods);
             model.addAttribute("recipe", recipe);
             model.addAttribute("pageTitle", "Edit Recipe (ID: " + recipeId + ")");
-            return "addRecipes";
+            return "editRecipe";
         } catch (RecipeNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/myRecipes";
 
         }
     }
+
+
+    @GetMapping("/myRecipes/addFoods/delete/{recipeId}/{foodId}")
+    public String deleteFoodFromRecipe(@PathVariable("recipeId")Integer recipeId, @PathVariable("foodId") Integer foodId) throws FoodNotFoundException {
+        try {
+            Recipe recipe = service.get(recipeId);
+            Food food = foodService.get(foodId);
+            Set<Food> recipeFoods = recipe.getFoods();
+            recipeFoods.remove(food);
+            recipe.setFoods(recipeFoods);
+            service.save(recipe);
+            return "redirect:/myRecipes/edit/" + recipeId;
+        } catch (RecipeNotFoundException e) {
+            e.printStackTrace();
+            return "myRecipes";
+        }
+    }
+
+/*    @PostMapping("/myRecipes/edit/save/{recipeId}")
+    public String saveRecipesAndFoods(@PathVariable("recipeId")Integer recipeId) throws RecipeNotFoundException {
+
+        Recipe recipe = service.get(recipeId);
+        Set<Food> recipeFoods = recipe.getFoods();
+        recipe.setFoods(recipeFoods);
+
+        service.save(recipe);
+
+        return "addRecipes";
+    }*/
 
 
 }
