@@ -8,6 +8,8 @@
         <a class="h3" th:href="@{/addFoods}">Add New Food</a>
     </div>
 
+    <button type="submit"><a  th:href="@{/myRecipes}">Done</a></button>
+
     <div>
         <form th:action="@{'/myRecipes/addFoods/' +${recipeId}}">
             <input id="foodSearch" type="text" name="keyword">
