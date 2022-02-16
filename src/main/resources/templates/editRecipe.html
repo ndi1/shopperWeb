@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="header :: myHeader"></div>
 
-<form th:action="@{/myRecipes/save}" method="post" th:object="${recipe}"
+<form th:action="@{'/myRecipes/save/' +${recipeId}}" method="post" th:object="${recipe}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{recipeId}">
     <div class="border border-secondary rounded p-3">

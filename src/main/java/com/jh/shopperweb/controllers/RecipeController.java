@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -88,10 +89,26 @@ public class RecipeController {
         return "addRecipes";
     }
 
+    @PostMapping("myRecipes/save/{recipeId}")
+    public String saveEditRecipes(@PathVariable("recipeId")Integer recipeId, @ModelAttribute("recipe") Recipe recipe) throws RecipeNotFoundException {
+
+       Recipe recipes = service.get(recipeId);
+       Set<Food> foods = recipes.getFoods();
+       recipes.setFoods(foods);
+       String updatedName = recipe.getRecipeName();
+       String updatedDesc = recipe.getRecipeDesc();
+       recipes.setRecipeName(updatedName);
+       recipes.setRecipeDesc(updatedDesc);
+       service.save(recipes);
+
+        return "redirect:/myRecipes/addFoods/"+recipe.getRecipeId();
+    }
 
     @PostMapping("/myRecipes/save")
     public String saveRecipes(Recipe recipe){
 
+        Set<Food> recipeFoods = recipe.getFoods();
+        recipe.setFoods(recipeFoods);
         service.save(recipe);
 
         return "redirect:/myRecipes/addFoods/"+recipe.getRecipeId();
