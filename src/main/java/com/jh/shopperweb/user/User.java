@@ -23,6 +23,8 @@ public class User {
     private Boolean enabled;
 
 
+
+
     public String getUsername() {
         return username;
     }

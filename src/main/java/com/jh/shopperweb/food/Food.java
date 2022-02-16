@@ -40,6 +40,9 @@ import java.util.Set;
     @ManyToMany(mappedBy = "foods")
     private Set<Recipe> recipes = new HashSet<>();
 
+
+
+
     public Set<Recipe> getRecipes() {
         return recipes;
     }

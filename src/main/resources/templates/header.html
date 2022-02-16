@@ -9,13 +9,24 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" href="/css/page.css" th:href="@{/css/page.css}"/>
 
+    <div class="container-fluid p-2 mainHeader text-white">
+        <div class="row">
+            <div class="col leftDiv ">
+                    <a class="nav-link active username vertical-center anchorInline" style="color: white;text-decoration: none" th:href="@{/logout}">Logout</a>
+             </div>
+            <div class="col mainHeader centerDiv ">
+                <h1><a th:href="@{/home}" class="headers" style="color: white;text-decoration: none">Shopper</a> <img  src="../static/images/logo.png"
+                                                                                                                       th:src="@{/images/logo.png}"></h1>
+            </div>
+            <div class="col rightDiv vertical-center">
+                <span class="username pr-3" th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                    <img th:src="@{'/images/photos/'+${#authentication.getPrincipal().getUsername()}+'.jpg'}" height="50" width="50" class="rounded-circle">
+
+            </div>
+        </div>
+    </div>
 
 
-<div class="p-4 mainHeader text-white text-center">
-    <h1><a th:href="@{/home}" class="headers" style="color: white;text-decoration: none"> Shopper </a> <img class="mainLogo" src="../static/images/logo.png"
-                                                                                                            th:src="@{/images/logo.png}"></h1>
-
-</div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navigation">
     <div class="container-fluid">

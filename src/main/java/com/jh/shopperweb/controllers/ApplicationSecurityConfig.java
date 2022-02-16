@@ -26,6 +26,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         "/login",
+                        "/users/save/**",
                         "/reset",
                         "/signup",
                         "/resources/static/**",

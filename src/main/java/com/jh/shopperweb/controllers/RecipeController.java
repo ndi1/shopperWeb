@@ -101,7 +101,7 @@ public class RecipeController {
        recipes.setRecipeDesc(updatedDesc);
        service.save(recipes);
 
-        return "redirect:/myRecipes/addFoods/"+recipe.getRecipeId();
+        return "redirect:/myRecipes";
     }
 
     @PostMapping("/myRecipes/save")

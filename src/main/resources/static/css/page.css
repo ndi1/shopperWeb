@@ -122,6 +122,13 @@ a:hover{
     text-decoration: none;
 }
 
+.username{
+    font-family:'Galada',cursive;
+    font-size: 25px;
+    text-color: white;
+    text-decoration: none;
+}
+
 .centerForms{
     margin: auto;
     width: 24%;
@@ -151,4 +158,30 @@ a:active { text-decoration: none; }
     text-align: center;
     justify-content: center;
     margin: auto;
+}
+
+.rightDiv{
+    float: right;
+    justify-content: right;
+    text-align: right;
+    height: 100%;
+}
+
+.leftDiv{
+    float: left;
+    justify-content: left;
+    text-align: left;
+    height: 100%;
+}
+
+.vertical-center {
+
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.anchorInline{
+    width: auto;
+    display: inline-block;
 }

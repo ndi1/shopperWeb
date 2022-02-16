@@ -8,14 +8,15 @@
     <a class="h3" th:href="@{/myRecipes/new}">Add New Recipe</a>
   </div>
   <div>
+    <div class="pb-3">
     <form th:action="@{/myRecipes}">
-      <input id="recipeSearch" type="text" name="keyword">
-      <button type="submit">Search</button>
+      <button class="rightDiv btn-dark" type="submit">Search</button>
+      <input class="rightDiv" id="recipeSearch" type="text" name="keyword">
     </form>
+    </div>
     <table class="table table-striped table-dark">
       <thead class="thead-dark">
       <tr>
-
         <th>Recipe Name</th>
         <th>Recipe Description</th>
         <th></th>
