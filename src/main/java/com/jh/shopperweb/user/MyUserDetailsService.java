@@ -20,4 +20,13 @@ public class MyUserDetailsService implements UserDetailsService {
         }
         return new UserPrincipal(user);
     }
+
+    public User loadUser(String username) throws UsernameNotFoundException{
+        User user = repository.findByUsername(username);
+        if (user == null){
+            throw new UsernameNotFoundException("User not found!");
+        }
+        return user;
+    }
+
 }

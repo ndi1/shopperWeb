@@ -2,11 +2,11 @@ package com.jh.shopperweb.food;
 
 
 import com.jh.shopperweb.recipe.Recipe;
+import com.jh.shopperweb.user.User;
+import com.jh.shopperweb.users_foods.UsersFoods;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -40,8 +40,28 @@ import java.util.Set;
     @ManyToMany(mappedBy = "foods")
     private Set<Recipe> recipes = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
+    @OneToMany(mappedBy = "foodId")
+    private Set<UsersFoods> usersFoods;
 
+    public Set<UsersFoods> getUsersFoods() {
+        return usersFoods;
+    }
+
+    public void setUsersFoods(Set<UsersFoods> usersFoods) {
+        this.usersFoods = usersFoods;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Set<Recipe> getRecipes() {
         return recipes;

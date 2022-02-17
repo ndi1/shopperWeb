@@ -1,6 +1,9 @@
 package com.jh.shopperweb.recipe;
 
 import com.jh.shopperweb.food.Food;
+import com.jh.shopperweb.user.User;
+import com.jh.shopperweb.users_foods.UsersFoods;
+import com.jh.shopperweb.users_recipes.UsersRecipes;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,6 +29,29 @@ public class Recipe {
             inverseJoinColumns = { @JoinColumn(name = "foodId") }
     )
     Set<Food> foods = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User userRecipe;
+
+    @OneToMany(mappedBy = "recipeId")
+    private Set<UsersRecipes> usersRecipe;
+
+    public Set<UsersRecipes> getUsersRecipe() {
+        return usersRecipe;
+    }
+
+    public void setUsersRecipe(Set<UsersRecipes> usersRecipe) {
+        this.usersRecipe = usersRecipe;
+    }
+
+    public User getUserRecipe() {
+        return userRecipe;
+    }
+
+    public void setUserRecipe(User userRecipe) {
+        this.userRecipe = userRecipe;
+    }
 
     public Integer getRecipeId() {
         return recipeId;

@@ -3,7 +3,11 @@ package com.jh.shopperweb.controllers;
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.food.FoodNotFoundException;
 import com.jh.shopperweb.food.FoodService;
+import com.jh.shopperweb.user.MyUserDetailsService;
+import com.jh.shopperweb.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +21,8 @@ import java.util.List;
 public class FoodController {
     @Autowired private FoodService service;
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
 
     @GetMapping("/myFoods")
     public String showFoodList(Model model, String keyword){
@@ -45,6 +51,10 @@ public class FoodController {
 
     @PostMapping("/myFoods/save")
     public String saveFood(Food food){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        food.setUser(user);
         service.save(food);
         return "redirect:/myFoods";
     }

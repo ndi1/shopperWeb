@@ -1,6 +1,13 @@
 package com.jh.shopperweb.user;
 
+import com.jh.shopperweb.food.Food;
+import com.jh.shopperweb.item.Item;
+import com.jh.shopperweb.recipe.Recipe;
+import com.jh.shopperweb.users_foods.UsersFoods;
+import com.jh.shopperweb.users_recipes.UsersRecipes;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,7 +30,60 @@ public class User {
     private Boolean enabled;
 
 
+    @OneToMany(mappedBy = "user")
+    private Set<Food> foods;
 
+    @OneToMany(mappedBy = "userRecipe")
+    private Set<Recipe> recipes;
+
+    @OneToMany(mappedBy = "userItem")
+    private Set<Item> items;
+
+    @OneToMany(mappedBy = "userId")
+    private Set<UsersFoods> usersFoods;
+
+    @OneToMany(mappedBy = "userId")
+    private Set<UsersRecipes> usersRecipes;
+
+    public Set<UsersRecipes> getUsersRecipes() {
+        return usersRecipes;
+    }
+
+    public void setUsersRecipes(Set<UsersRecipes> usersRecipes) {
+        this.usersRecipes = usersRecipes;
+    }
+
+    public Set<UsersFoods> getUsersFoods() {
+        return usersFoods;
+    }
+
+    public void setUsersFoods(Set<UsersFoods> usersFoods) {
+        this.usersFoods = usersFoods;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
+
+    public Set<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Set<Food> foods) {
+        this.foods = foods;
+    }
 
     public String getUsername() {
         return username;

@@ -1,5 +1,7 @@
 package com.jh.shopperweb.item;
 
+import com.jh.shopperweb.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,18 @@ public class Item {
     private String itemDesc;
     @Column
     private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User userItem;
+
+    public User getUserItem() {
+        return userItem;
+    }
+
+    public void setUserItem(User userItem) {
+        this.userItem = userItem;
+    }
 
     public Integer getItemId() {
         return itemId;
