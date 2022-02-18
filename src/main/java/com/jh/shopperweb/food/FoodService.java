@@ -1,6 +1,7 @@
 package com.jh.shopperweb.food;
 
 
+import com.jh.shopperweb.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,10 @@ public class FoodService {
 
     public List<Food> listAll(){
         return (List<Food>) repo.findAll();
+    }
+
+    public List<Food> listUserFoods(Integer userId){
+        return repo.findUserFoods(userId);
     }
 
     public Page<Food> findPage(int pageNumber){
@@ -45,7 +50,9 @@ public class FoodService {
         return repo.findByKeyword(keyword);
     }
 
-
+    public List<Food> findUserFoodByKeyword(String keyword, Integer userId){
+        return repo.findUserFoodByKeyword(keyword,userId);
+    }
 
 
 }

@@ -8,11 +8,10 @@
         <a class="h3" th:href="@{/addFoods}">Add New Food</a>
     </div>
     <div class="m-2">
-        <a class="h3" th:href="@{/myFoods/personal}">My Foods</a>
+        <a class="h3" th:href="@{/myFoods}">All Foods</a>
     </div>
-
     <div>
-        <form th:action="@{/myFoods}">
+        <form th:action="@{/myFoods/personal}">
             <input id="foodSearch" type="text" name="keyword">
             <button type="submit">Search</button>
         </form>
@@ -26,6 +25,7 @@
                 <th>Carbs</th>
                 <th>Fats</th>
                 <th>Protein</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +38,10 @@
                     <td>[[${food.carbs}]] g</td>
                     <td>[[${food.fats}]] g</td>
                     <td>[[${food.protein}]] g</td>
+                    <td>
+                        <a class="h4 mr-3" th:href="@{'/myFoods/edit/' +${food.foodId}}">Edit</a>
+                        <a class="h4" th:href="@{'/myFoods/delete/' +${food.foodId}}">Delete</a>
+                    </td>
                 </tr>
             </th:block>
             </tbody>

@@ -19,9 +19,10 @@
                                                                                                                        th:src="@{/images/logo.png}"></h1>
             </div>
             <div class="col rightDiv vertical-center">
+                <a th:href="@{/users/myGoals}" style="color: white;text-decoration: none">
                 <span class="username pr-3" th:text="${#authentication.getPrincipal().getUsername()}"></span>
                     <img th:src="@{'/images/photos/'+${#authentication.getPrincipal().getUsername()}+'.jpg'}" height="50" width="50" class="rounded-circle">
-
+                </a>
             </div>
         </div>
     </div>

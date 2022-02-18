@@ -3,6 +3,7 @@ package com.jh.shopperweb.controllers;
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.food.FoodNotFoundException;
 import com.jh.shopperweb.food.FoodService;
+import com.jh.shopperweb.recipe.Recipe;
 import com.jh.shopperweb.user.MyUserDetailsService;
 import com.jh.shopperweb.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class FoodController {
     private MyUserDetailsService myUserDetailsService;
 
     @GetMapping("/myFoods")
-    public String showFoodList(Model model, String keyword){
+    public String showAllFoodList(Model model, String keyword){
 
 
         if (keyword != null){
@@ -40,6 +41,24 @@ public class FoodController {
     }
 
 
+    @GetMapping("/myFoods/personal")
+    public String showMyFoodList(Model model, String keyword){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        Integer curId = user.getUserId();
+
+        if (keyword != null){
+            model.addAttribute("listFoods",service.findUserFoodByKeyword(keyword,curId));
+        }
+        else{
+            List<Food> listFoods = service.listUserFoods(curId);
+            model.addAttribute("listFoods",listFoods);
+        }
+
+        return "myFoodsPersonal";
+    }
 
 
     @GetMapping("/addFoods")
@@ -86,5 +105,21 @@ public class FoodController {
         return "redirect:/myFoods";
     }
 
+
+    @GetMapping("/myFoods/addToDiary")
+    public String addFoodToDiary(Model model, String keyword){
+
+
+        if (keyword != null){
+            model.addAttribute("listFoods",service.findByKeyword(keyword));
+        }
+        else{
+            List<Food> listFoods = service.listAll();
+            model.addAttribute("listFoods",listFoods);
+        }
+
+
+        return "addFoodsToDay";
+    }
 
 }

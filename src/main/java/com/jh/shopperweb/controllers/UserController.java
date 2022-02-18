@@ -87,4 +87,10 @@ public class UserController {
         return "home";
     }
 
+    @GetMapping("/users/myGoals")
+    public String showUserGoals(){
+
+        return "userProfile";
+    }
+
 }

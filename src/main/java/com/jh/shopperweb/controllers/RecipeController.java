@@ -10,10 +10,8 @@ import com.jh.shopperweb.recipe.RecipeService;
 import com.jh.shopperweb.user.MyUserDetailsService;
 import com.jh.shopperweb.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -182,17 +178,39 @@ public class RecipeController {
         }
     }
 
-/*    @PostMapping("/myRecipes/edit/save/{recipeId}")
-    public String saveRecipesAndFoods(@PathVariable("recipeId")Integer recipeId) throws RecipeNotFoundException {
+    @GetMapping("/myRecipes/addToDiary")
+    public String addRecipeToDiary(Model model, String keyword){
 
-        Recipe recipe = service.get(recipeId);
-        Set<Food> recipeFoods = recipe.getFoods();
-        recipe.setFoods(recipeFoods);
+        if (keyword != null){
+            model.addAttribute("listRecipes",service.findByKeyword(keyword));
+        }
+        else{
+            List<Recipe> listRecipes = service.listAll();
+            model.addAttribute("listRecipes",listRecipes);
+        }
 
-        service.save(recipe);
+        return "addRecipeToDay";
+    }
 
-        return "addRecipes";
-    }*/
+
+    @GetMapping("/myRecipes/personal")
+    public String showMyRecipeList(Model model, String keyword){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        Integer curId = user.getUserId();
+
+        if (keyword != null){
+            model.addAttribute("listRecipes",service.findUserRecipeByKeyword(keyword,curId));
+        }
+        else{
+            List<Recipe> listRecipes = service.listUserRecipes(curId);
+            model.addAttribute("listRecipes",listRecipes);
+        }
+
+        return "myRecipesPersonal";
+    }
 
 
 }

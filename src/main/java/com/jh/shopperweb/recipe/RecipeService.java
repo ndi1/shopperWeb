@@ -48,4 +48,12 @@ public class RecipeService {
         return repo.findByKeyword(keyword);
     }
 
+    public List<Recipe> findUserRecipeByKeyword(String keyword, Integer userId){
+        return repo.findUserRecipeByKeyword(keyword,userId);
+    }
+
+    public List<Recipe> listUserRecipes(Integer userId){
+        return repo.findUserRecipes(userId);
+    }
+
 }

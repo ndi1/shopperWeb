@@ -15,4 +15,10 @@ public interface FoodRepository extends JpaRepository<Food,Integer> {
     @Query(value = "Select * from foods f where f.food_name like %:keyword% or f.food_desc like %:keyword%", nativeQuery = true)
     List<Food> findByKeyword(@Param("keyword") String keyword);
 
+    @Query(value = "Select * from foods f where (f.food_name like %:keyword% or f.food_desc like %:keyword%) and f.user_id=:userId", nativeQuery = true)
+    List<Food> findUserFoodByKeyword(@Param("keyword") String keyword, @Param("userId")Integer userId);
+
+    @Query(value = "Select * from foods f where f.user_id = ?1",nativeQuery = true)
+    List<Food> findUserFoods(Integer userId);
+
 }

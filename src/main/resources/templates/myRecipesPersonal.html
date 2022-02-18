@@ -8,11 +8,11 @@
     <a class="h3" th:href="@{/myRecipes/new}">Add New Recipe</a>
   </div>
   <div class="m-2">
-    <a class="h3" th:href="@{/myRecipes/personal}">My Recipes</a>
+    <a class="h3" th:href="@{/myRecipes}">All Recipes</a>
   </div>
   <div>
     <div class="pb-3">
-    <form th:action="@{/myRecipes}">
+      <form th:action="@{/myRecipes/personal}">
       <button class="rightDiv btn-dark" type="submit">Search</button>
       <input class="rightDiv" id="recipeSearch" type="text" name="keyword">
     </form>
@@ -22,6 +22,7 @@
       <tr>
         <th>Recipe Name</th>
         <th>Recipe Description</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -31,6 +32,10 @@
           <td>[[${recipe.recipeName}]]</td>
           <td>[[${recipe.recipeDesc}]]</td>
 
+          <td>
+            <a class="h4 mr-3" th:href="@{'/myRecipes/edit/' +${recipe.recipeId}}">Edit</a>
+            <a class="h4" th:href="@{'/myRecipes/delete/' +${recipe.recipeId}}">Delete</a>
+          </td>
         </tr>
       </th:block>
       </tbody>
