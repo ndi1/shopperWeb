@@ -9,18 +9,20 @@ import java.io.Serializable;
 
 @Entity
 @Table (name = "users_foods")
-@IdClass(UsersFoodsId.class)
 public class UsersFoods implements Serializable {
 
 
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ufId;
+
+/*    @Id*/
     @ManyToOne
     @JoinColumn (name = "food_id")
     private Food foodId;
 
 
-    @Id
+/*    @Id*/
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userId;
@@ -28,7 +30,13 @@ public class UsersFoods implements Serializable {
     @Column
     private String date;
 
+    public Integer getUfId() {
+        return ufId;
+    }
 
+    public void setUfId(Integer ufId) {
+        this.ufId = ufId;
+    }
 
     public Food getFoodId() {
         return foodId;

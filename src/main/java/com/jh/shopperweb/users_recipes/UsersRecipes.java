@@ -3,24 +3,27 @@ package com.jh.shopperweb.users_recipes;
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.recipe.Recipe;
 import com.jh.shopperweb.user.User;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 
 
 @Entity
 @Table(name = "users_recipes")
-@IdClass(UsersRecipesId.class)
 public class UsersRecipes implements Serializable{
 
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer urId;
+
         @ManyToOne
         @JoinColumn(name = "recipe_id")
         private Recipe recipeId;
 
 
-        @Id
         @ManyToOne
         @JoinColumn(name = "user_id")
         private User userId;
@@ -28,6 +31,13 @@ public class UsersRecipes implements Serializable{
         @Column
         private String date;
 
+        public Integer getUrId() {
+                return urId;
+        }
+
+        public void setUrId(Integer urId) {
+                this.urId = urId;
+        }
 
         public Recipe getRecipeId() {
                 return recipeId;
