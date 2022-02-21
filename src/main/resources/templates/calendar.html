@@ -1,14 +1,22 @@
 <!DOCTYPE html>
+<title>Daily Food Log</title>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="header :: myHeader"></div>
 <body>
 <h2 class="centerDiv">Food Diary For:</h2>
-<div class="centerDiv">
 
-  <span>
-    <input type="date" name="dateSelected" th:value="${#dates.format(selectedDate, 'yyyy-MM-dd')}" />
+
+
+
+<form th:action="@{/myCalendar/load}" th:method="post" th:object="${data}">
+  <div class="centerDiv">
+    <span>
+    <input type="date" th:field="*{diaryDate}"/>
   </span>
 </div>
+  <button type="submit">Go To Diary</button>
+</form>
+
 
 <div class="container centerDiv">
   <div class="row justify-content-md-center">

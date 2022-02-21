@@ -21,4 +21,7 @@ public interface FoodRepository extends JpaRepository<Food,Integer> {
     @Query(value = "Select * from foods f where f.user_id = ?1",nativeQuery = true)
     List<Food> findUserFoods(Integer userId);
 
+    @Query(value = "Select foods.* from foods inner JOIN users_foods on foods.food_id = users_foods.food_id where users_foods.date=:date and users_foods.user_id=:userId", nativeQuery = true)
+    List<Food> findUserFoodsByDate(@Param("date")String date, @Param("userId")Integer userId);
+
 }

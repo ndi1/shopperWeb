@@ -29,6 +29,7 @@ public class UsersFoods implements Serializable {
     private String date;
 
 
+
     public Food getFoodId() {
         return foodId;
     }

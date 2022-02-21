@@ -54,5 +54,8 @@ public class FoodService {
         return repo.findUserFoodByKeyword(keyword,userId);
     }
 
+    public List<Food> findUserFoodByDate(String date, Integer userId){
+        return repo.findUserFoodsByDate(date, userId);
+    }
 
 }

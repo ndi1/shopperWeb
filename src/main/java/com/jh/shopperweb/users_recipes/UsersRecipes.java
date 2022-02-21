@@ -28,4 +28,28 @@ public class UsersRecipes implements Serializable{
         @Column
         private String date;
 
+
+        public Recipe getRecipeId() {
+                return recipeId;
+        }
+
+        public void setRecipeId(Recipe recipeId) {
+                this.recipeId = recipeId;
+        }
+
+        public User getUserId() {
+                return userId;
+        }
+
+        public void setUserId(User userId) {
+                this.userId = userId;
+        }
+
+        public String getDate() {
+                return date;
+        }
+
+        public void setDate(String date) {
+                this.date = date;
+        }
 }

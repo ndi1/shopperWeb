@@ -39,7 +39,7 @@
                     <td>[[${food.fats}]] g</td>
                     <td>[[${food.protein}]] g</td>
                     <td>
-                        <a class="h4 mr-3" th:href="@{'/myRecipes/addFoods/add/'+${food.foodId}}">Add</a>
+                        <a class="h4 mr-3" th:href="@{'/myCalendar/'+${selectedDate}+'/addFood/'+${food.foodId}+'/save'}">Add</a>
 
                     </td>
                 </tr>

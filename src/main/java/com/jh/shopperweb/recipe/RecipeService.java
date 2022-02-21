@@ -56,4 +56,9 @@ public class RecipeService {
         return repo.findUserRecipes(userId);
     }
 
+
+    public List<Recipe> findUserRecipesByDate(String date, Integer userId){
+        return repo.findUserRecipesByDate(date,userId);
+    }
+
 }

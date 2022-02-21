@@ -29,6 +29,8 @@ public class User {
     @Column
     private Boolean enabled;
 
+    @OneToMany (mappedBy = "userItem")
+    private Set<Item> items;
 
     @OneToMany(mappedBy = "user")
     private Set<Food> foods;
@@ -36,8 +38,6 @@ public class User {
     @OneToMany(mappedBy = "userRecipe")
     private Set<Recipe> recipes;
 
-    @OneToMany(mappedBy = "userItem")
-    private Set<Item> items;
 
     @OneToMany(mappedBy = "userId")
     private Set<UsersFoods> usersFoods;

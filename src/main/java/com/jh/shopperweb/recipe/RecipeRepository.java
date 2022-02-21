@@ -2,6 +2,7 @@ package com.jh.shopperweb.recipe;
 
 
 
+import com.jh.shopperweb.food.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +21,7 @@ public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
     @Query(value = "Select * from recipes r where r.user_id = ?1",nativeQuery = true)
     List<Recipe> findUserRecipes(Integer userId);
 
+    @Query(value = "Select recipes.* from recipes inner JOIN users_recipes on recipes.recipe_id = users_recipes.recipe_id where users_recipes.date=:date and users_recipes.user_id=:userId", nativeQuery = true)
+    List<Recipe> findUserRecipesByDate(@Param("date")String date, @Param("userId")Integer userId);
 
 }
