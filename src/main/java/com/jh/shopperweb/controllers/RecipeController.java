@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -41,7 +42,8 @@ public class RecipeController {
             model.addAttribute("listRecipes",service.findByKeyword(keyword));
         }
         else{
-            List<Recipe> listRecipes = service.listAll();
+            /*List<Recipe> listRecipes = service.listAll();*/
+            List<Map<String,Object>> listRecipes = service.caloriesByRecipe();
             model.addAttribute("listRecipes",listRecipes);
         }
 

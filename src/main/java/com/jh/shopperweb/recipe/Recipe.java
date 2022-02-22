@@ -2,13 +2,10 @@ package com.jh.shopperweb.recipe;
 
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.user.User;
-import com.jh.shopperweb.users_foods.UsersFoods;
 import com.jh.shopperweb.users_recipes.UsersRecipes;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

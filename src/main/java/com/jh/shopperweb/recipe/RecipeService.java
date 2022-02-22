@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -59,6 +60,10 @@ public class RecipeService {
 
     public List<Recipe> findUserRecipesByDate(String date, Integer userId){
         return repo.findUserRecipesByDate(date,userId);
+    }
+
+    public List<Map<String,Object>> caloriesByRecipe(){
+        return repo.caloriesByRecipe();
     }
 
 }

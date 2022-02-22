@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 
 import java.util.List;
+import java.util.Map;
 
 public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
 
@@ -24,4 +25,6 @@ public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
     @Query(value = "Select recipes.* from recipes inner JOIN users_recipes on recipes.recipe_id = users_recipes.recipe_id where users_recipes.date=:date and users_recipes.user_id=:userId", nativeQuery = true)
     List<Recipe> findUserRecipesByDate(@Param("date")String date, @Param("userId")Integer userId);
 
+    @Query(value = "Select sum(foods.calories) AS calories,sum(foods.carbs) AS carbs, sum(foods.fats) AS fats, sum(foods.protein) As protein, sum(foods.price) as price, recipes.* From foods inner JOIN recipes_foods on recipes_foods.food_id = foods.food_id inner join recipes on recipes.recipe_id = recipes_foods.recipe_id group by recipe_id",nativeQuery = true)
+    List<Map<String,Object>> caloriesByRecipe();
 }

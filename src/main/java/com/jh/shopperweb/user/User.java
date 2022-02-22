@@ -39,7 +39,6 @@ public class User {
     @OneToMany(mappedBy = "userRecipe")
     private Set<Recipe> recipes;
 
-
     @OneToMany(mappedBy = "userId")
     private Set<UsersFoods> usersFoods;
 
