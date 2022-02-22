@@ -39,7 +39,8 @@ public class RecipeController {
     public String showRecipeList(Model model, String keyword){
 
         if (keyword != null){
-            model.addAttribute("listRecipes",service.findByKeyword(keyword));
+            List<Map<String,Object>> listRecipes = service.caloriesByRecipeWithKeyword(keyword);
+            model.addAttribute("listRecipes",listRecipes);
         }
         else{
             /*List<Recipe> listRecipes = service.listAll();*/

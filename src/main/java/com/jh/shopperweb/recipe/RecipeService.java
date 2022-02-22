@@ -66,4 +66,8 @@ public class RecipeService {
         return repo.caloriesByRecipe();
     }
 
+    public List<Map<String,Object>> caloriesByRecipeWithKeyword(String keyword){
+        return repo.caloriesByRecipeWithKeyword(keyword);
+    }
+
 }
