@@ -4,6 +4,7 @@ import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.item.Item;
 import com.jh.shopperweb.recipe.Recipe;
 import com.jh.shopperweb.users_foods.UsersFoods;
+import com.jh.shopperweb.users_items.UsersItems;
 import com.jh.shopperweb.users_recipes.UsersRecipes;
 
 import javax.persistence.*;
@@ -44,6 +45,17 @@ public class User {
 
     @OneToMany(mappedBy = "userId")
     private Set<UsersRecipes> usersRecipes;
+
+    @OneToMany(mappedBy = "userId")
+    private Set<UsersItems> usersItems;
+
+    public Set<UsersItems> getUsersItems() {
+        return usersItems;
+    }
+
+    public void setUsersItems(Set<UsersItems> usersItems) {
+        this.usersItems = usersItems;
+    }
 
     public Set<UsersRecipes> getUsersRecipes() {
         return usersRecipes;

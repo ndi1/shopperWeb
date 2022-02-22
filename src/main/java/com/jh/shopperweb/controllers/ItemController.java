@@ -43,6 +43,26 @@ public class ItemController {
         return "items";
     }
 
+    @GetMapping("/myItems/personal")
+    public String showMyFoodList(Model model, String keyword){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        Integer curId = user.getUserId();
+
+        if (keyword != null){
+            model.addAttribute("listItems",service.findUserItemByKeyword(keyword,curId));
+        }
+        else{
+            List<Item> listItems = service.listUserItems(curId);
+            model.addAttribute("listItems",listItems);
+        }
+
+        return "itemsPersonal";
+    }
+
+
 
     @GetMapping("/addItems")
     public String showNewItemForm(Model model) {

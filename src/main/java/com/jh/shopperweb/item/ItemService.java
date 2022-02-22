@@ -16,6 +16,9 @@ public class ItemService {
         return (List<Item>) repo.findAll();
     }
 
+    public List<Item> listUserItems(Integer userId){
+        return repo.findUserItems(userId);
+    }
 
     public void save(Item item) {
         repo.save(item);
@@ -38,5 +41,14 @@ public class ItemService {
     public List<Item> findByKeyword(String keyword){
         return repo.findByKeyword(keyword);
     }
+
+    public List<Item> findUserItemByKeyword(String keyword, Integer itemId){
+        return repo.findUserItemByKeyword(keyword,itemId);
+    }
+
+    public List<Item> findUserFoodByDate(String date, Integer userId){
+        return repo.findUserItemsByDate(date, userId);
+    }
+
 
 }

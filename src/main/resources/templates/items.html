@@ -4,10 +4,20 @@
 <div th:replace="header :: myHeader"></div>
 
 <div class="container-fluid text-center">
-    <div><h1>Manage Items</h1></div>
-    <div class="m-2">
-        <a class="h3" th:href="@{/addItems}">Add New Item</a>
+
+    <h1 class="centerDiv">Manage Items</h1>
+    <div class="container centerDiv mt-3">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <a class="h3" th:href="@{/addItems}">Add New Item</a>
+            </div>
+            <div class="col-md-auto">
+                <a class="h3" th:href="@{/myItems/personal}">My Items</a>
+            </div>
+        </div>
     </div>
+
+
     <div class="container centerDiv mt-5">
     <div>
         <form th:action="@{/myItems}">
@@ -20,7 +30,7 @@
                 <th>Item Name</th>
                 <th>Item Description</th>
                 <th>Price</th>
-                <th></th>
+
             </tr>
             </thead>
             <tbody>
@@ -29,11 +39,6 @@
                     <td>[[${item.itemName}]]</td>
                     <td>[[${item.itemDesc}]]</td>
                     <td>$[[${item.price}]]</td>
-
-                    <td>
-                        <a class="h4 mr-3" th:href="@{'/myItems/edit/' +${item.itemId}}">Edit</a>
-                        <a class="h4" th:href="@{'/myItems/delete/' +${item.itemId}}">Delete</a>
-                    </td>
                 </tr>
             </th:block>
             </tbody>

@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<title>All Items</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header :: myHeader"></div>
 
+<div class="container-fluid text-center">
+
+
+    <h1 class="centerDiv">My Items</h1>
+    <div class="container centerDiv mt-3">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <a class="h3" th:href="@{/addItems}">Add New Item</a>
+            </div>
+            <div class="col-md-auto">
+                <a class="h3" th:href="@{/myItems}">All Items</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container centerDiv mt-5">
+        <div>
+            <form th:action="@{/myItems}">
+                <button class="rightDiv btn-dark" type="submit">Search</button>
+                <input class="rightDiv" id="recipeSearch" type="text" name="keyword">
+            </form>
+            <table class="table table-striped table-dark">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Item Description</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="item : ${listItems}">
+                    <tr>
+                        <td>[[${item.itemName}]]</td>
+                        <td>[[${item.itemDesc}]]</td>
+                        <td>$[[${item.price}]]</td>
+
+                        <td>
+                            <a class="h4 mr-3" th:href="@{'/myItems/edit/' +${item.itemId}}">Edit</a>
+                            <a class="h4" th:href="@{'/myItems/delete/' +${item.itemId}}">Delete</a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
