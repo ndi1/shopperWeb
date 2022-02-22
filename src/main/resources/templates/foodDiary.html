@@ -3,13 +3,12 @@
 <div th:replace="header :: myHeader"></div>
 
 <form th:action="@{/myCalendar/load}" th:method="post" th:object="${data}">
-    <div class="centerDiv">
+    <div class="centerDiv m-4">
     <span>
-    <input type="date" th:field="*{diaryDate}">
-
+        <input type="date" th:name="diaryDate" th:value="${{selectedDate}}" th:id="diaryDate" >
+<button type="submit">Go To Food Diary</button>
   </span>
     </div>
-    <button type="submit">Go To Diary</button>
 </form>
 
 
@@ -69,7 +68,9 @@
     </div>
 </div>
 
-
+<script>
+    Document.getElementById("diaryDate")
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -55,10 +57,11 @@ public class CalendarController {
         model.addAttribute("selectedDate", selectedDate);
         model.addAttribute("data",new DiaryFormData());
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        String date = dateFormat.format(selectedDate);
 
-
-        return "calendar";
+       return "redirect:/myCalendar/"+date;
     }
 
 

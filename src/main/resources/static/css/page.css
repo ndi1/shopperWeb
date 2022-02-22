@@ -185,3 +185,9 @@ a:active { text-decoration: none; }
     width: auto;
     display: inline-block;
 }
+
+.columnModify{
+
+    white-space: nowrap;
+    width: 10%;
+}

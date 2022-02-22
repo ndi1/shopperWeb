@@ -4,14 +4,20 @@
 <div th:replace="header :: myHeader"></div>
 
 <div class="container-fluid text-center">
-  <div><h1>Manage Recipes</h1></div>
-  <div class="m-2">
-    <a class="h3" th:href="@{/myRecipes/new}">Add New Recipe</a>
+
+  <h1>Manage Recipes</h1>
+  <div class="container centerDiv mt-3">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <a class="h3" th:href="@{/myRecipes/new}">Add New Recipe</a>
+      </div>
+      <div class="col-md-auto">
+        <a class="h3" th:href="@{/myRecipes/personal}">My Recipes</a>
+      </div>
+    </div>
   </div>
-  <div class="m-2">
-    <a class="h3" th:href="@{/myRecipes/personal}">My Recipes</a>
-  </div>
-  <div>
+
+  <div class="container centerDiv mt-5">
     <div class="pb-3">
     <form th:action="@{/myRecipes}">
       <button class="rightDiv btn-dark" type="submit">Search</button>

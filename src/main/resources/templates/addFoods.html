@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="header :: myHeader"></div>
-
-<form th:action="@{/myFoods/save}" method="post" th:object="${food}"
+<h1 class="centerDiv mt-2">Create New Food</h1>
+<form class="mt-4"  th:action="@{/myFoods/save}" method="post" th:object="${food}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{foodId}">
     <div class="border border-secondary rounded p-3">
