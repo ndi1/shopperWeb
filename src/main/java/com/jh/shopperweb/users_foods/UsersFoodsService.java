@@ -34,5 +34,8 @@ public class UsersFoodsService {
 
     }
 
+    public void deleteFromDay(String date, Integer userId, Integer foodId){
+        repo.deleteFoodFromDay(date,userId,foodId);
+    }
 
 }

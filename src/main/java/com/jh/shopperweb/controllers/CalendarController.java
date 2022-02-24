@@ -11,6 +11,7 @@ import com.jh.shopperweb.recipe.RecipeService;
 import com.jh.shopperweb.user.MyUserDetailsService;
 import com.jh.shopperweb.user.User;
 import com.jh.shopperweb.users_foods.UsersFoods;
+import com.jh.shopperweb.users_foods.UsersFoodsNotFoundException;
 import com.jh.shopperweb.users_foods.UsersFoodsService;
 import com.jh.shopperweb.users_goals.UsersGoals;
 import com.jh.shopperweb.users_goals.UsersGoalsService;
@@ -25,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.math.BigDecimal;
@@ -34,7 +36,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Map;
 
 
 @Controller
@@ -115,41 +117,53 @@ public class CalendarController {
 
 
             Double foodCals = foodService.sumCalories(foodDate,curId);
-            Double remainingCal = calGoal - foodCals;
-            Double calPercent = foodCals/calGoal*100;
+            Double recipeCalories = recipeService.sumRecipeCalories(foodDate,curId);
+
+            Double remainingCal = calGoal - foodCals-recipeCalories;
+            Double calPercent = remainingCal/calGoal*100;
             BigDecimal bd = new BigDecimal(calPercent).setScale(2, RoundingMode.HALF_UP);
             calPercent = bd.doubleValue();
             model.addAttribute("remainingCal",remainingCal);
             model.addAttribute("calPercent",calPercent);
 
             Double foodCarbs = foodService.sumCarbs(foodDate,curId);
-            Double remainingCarbs = carbGoal - foodCarbs;
-            Double carbPercent = foodCarbs/carbGoal*100;
+            Double recipeCarbs = recipeService.sumRecipeCarbs(foodDate,curId);
+
+            Double remainingCarbs = carbGoal - foodCarbs-recipeCarbs;
+            Double carbPercent = remainingCarbs/carbGoal*100;
             BigDecimal bd1 = new BigDecimal(carbPercent).setScale(2, RoundingMode.HALF_UP);
             carbPercent = bd1.doubleValue();
             model.addAttribute("remainingCarbs",remainingCarbs);
             model.addAttribute("carbPercent",carbPercent);
 
             Double foodProtein = foodService.sumProtein(foodDate,curId);
-            Double remainingProtein = proteinGoal - foodProtein;
-            Double proteinPercent = foodProtein/proteinGoal*100;
+            Double recipeProtein = recipeService.sumRecipeProtein(foodDate,curId);
+
+            Double remainingProtein = proteinGoal - foodProtein-recipeProtein;
+            Double proteinPercent = remainingProtein/proteinGoal*100;
             BigDecimal bd2 = new BigDecimal(proteinPercent).setScale(2, RoundingMode.HALF_UP);
             proteinPercent = bd2.doubleValue();
             model.addAttribute("remainingProtein",remainingProtein);
             model.addAttribute("proteinPercent",proteinPercent);
 
             Double foodFats = foodService.sumFats(foodDate,curId);
-            Double remainingFats = fatsGoal - foodFats;
-            Double fatPercent = foodFats/fatsGoal*100;
+            Double recipeFats = recipeService.sumRecipeFats(foodDate,curId);
+
+            Double remainingFats = fatsGoal - foodFats-recipeFats;
+            Double fatPercent = remainingFats/fatsGoal*100;
             BigDecimal bd3 = new BigDecimal(fatPercent).setScale(2, RoundingMode.HALF_UP);
             fatPercent = bd3.doubleValue();
             model.addAttribute("remainingFats",remainingFats);
             model.addAttribute("fatPercent",fatPercent);
 
             Double foodPrice = foodService.sumPrice(foodDate,curId);
-            model.addAttribute("foodPrice",foodPrice);
+            Double recipePrice = recipeService.sumRecipePrice(foodDate,curId);
+            model.addAttribute("totalPrice",foodPrice+recipePrice);
 
 
+
+/*        List<Map<String,Object>> listRecipes = service.caloriesByRecipe();
+        model.addAttribute("listRecipes",listRecipes);*/
 
         List<Food> foodsByDate = foodService.findUserFoodByDate(foodDate,curId);
         model.addAttribute("foodsByDate", foodsByDate);
@@ -254,6 +268,21 @@ public class CalendarController {
 
         return "redirect:/myCalendar/"+date;
 
+    }
+
+
+    @GetMapping("/myCalendar/{foodDate}/{foodId}/delete")
+    public String deleteFoodFromDiary(@PathVariable("foodDate") String foodDate, @PathVariable("foodId")Integer foodId) throws UsersFoodsNotFoundException {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        Integer curId = user.getUserId();
+
+        usersFoodsService.deleteFromDay(foodDate,curId,foodId);
+
+
+        return "foodDiary";
     }
 
 

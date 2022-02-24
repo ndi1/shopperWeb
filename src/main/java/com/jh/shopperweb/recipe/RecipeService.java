@@ -3,7 +3,6 @@ package com.jh.shopperweb.recipe;
 
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.food.FoodRepository;
-import com.jh.shopperweb.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,12 +61,31 @@ public class RecipeService {
         return repo.findUserRecipesByDate(date,userId);
     }
 
-    public List<Map<String,Object>> caloriesByRecipe(){
-        return repo.caloriesByRecipe();
+    public List<Map<String,Object>> macrosByRecipe(){
+        return repo.macrosByRecipe();
     }
 
-    public List<Map<String,Object>> caloriesByRecipeWithKeyword(String keyword){
-        return repo.caloriesByRecipeWithKeyword(keyword);
+    public List<Map<String,Object>> macrosByRecipeWithKeyword(String keyword){
+        return repo.macrosByRecipeWithKeyword(keyword);
     }
 
+    public Double sumRecipeCalories(String date, Integer userId){
+        return repo.sumRecipeCalories(date, userId);
+    }
+
+    public Double sumRecipeCarbs(String date, Integer userId){
+        return repo.sumRecipeCarbs(date,userId);
+    }
+
+    public Double sumRecipeFats(String date, Integer userId){
+        return repo.sumRecipeFats(date,userId);
+    }
+
+    public Double sumRecipeProtein(String date, Integer userId){
+        return repo.sumRecipeProtein(date,userId);
+    }
+
+    public Double sumRecipePrice(String date, Integer userId){
+        return repo.sumRecipePrice(date,userId);
+    }
 }

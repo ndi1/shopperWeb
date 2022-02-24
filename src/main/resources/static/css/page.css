@@ -199,8 +199,14 @@ a:active { text-decoration: none; }
 
 .goalsBar{
     background-image:none;
-    background-color: #ba4343;
+    background-color: lightseagreen;
     color: black;
     justify-content: center;
+    font-weight: bold;
     text-align: center;
+}
+
+.sizeTables{
+    max-width:100%;
+    white-space:nowrap;
 }

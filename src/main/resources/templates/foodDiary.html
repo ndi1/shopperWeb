@@ -6,7 +6,7 @@
 <h2 class="centerDiv mt-4" th:text="'Food Diary For: '+ ${{americanDate}}"></h2>
 
 <form th:action="@{/myCalendar/load}" th:method="post" th:object="${data}">
-    <div class="centerDiv m-5">
+    <div class="centerDiv m-3">
     <span>
         <input type="date" th:name="diaryDate" th:value="${{selectedDate}}" th:id="diaryDate" >
 <button class=" btn-dark"  type="submit">Go To Food Diary</button>
@@ -14,6 +14,7 @@
     </div>
 </form>
 
+<h1 class="centerDiv mb-1">Daily Goals</h1>
 <div class="container centerDiv foodGoals mb-3">
 <div class="row">
     <div class="leftDiv col">
@@ -92,7 +93,7 @@
 
 
 
-<div class="container centerDiv">
+<div class="container centerDiv justify-content-center">
     <div class="row justify-content-center">
         <div class="col">
             <h2><a th:href="@{'/myCalendar/'+${selectedDate}+'/addFood'}">Add Food Today</a></h2>
@@ -103,9 +104,10 @@
                     <th>Food Description</th>
                     <th>Price</th>
                     <th>Calories</th>
-                    <th>Carbs</th>
-                    <th>Fats</th>
-                    <th>Protein</th>
+                    <th>Carbs(g)</th>
+                    <th>Fats(g)</th>
+                    <th>Protein(g)</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -115,9 +117,10 @@
                         <td>[[${food.foodDesc}]]</td>
                         <td>$[[${food.price}]]</td>
                         <td>[[${food.calories}]] </td>
-                        <td>[[${food.carbs}]] g</td>
-                        <td>[[${food.fats}]] g</td>
-                        <td>[[${food.protein}]] g</td>
+                        <td>[[${food.carbs}]]</td>
+                        <td>[[${food.fats}]]</td>
+                        <td>[[${food.protein}]]</td>
+                        <td><a class="h4 mr-3" th:href="@{'/myCalendar/'+${selectedDate}+'/'+${food.foodId}+'/delete'}">Remove</a></td>
                     </tr>
                 </th:block>
                 </tbody>

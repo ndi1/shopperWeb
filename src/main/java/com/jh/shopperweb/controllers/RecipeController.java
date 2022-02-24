@@ -39,12 +39,12 @@ public class RecipeController {
     public String showRecipeList(Model model, String keyword){
 
         if (keyword != null){
-            List<Map<String,Object>> listRecipes = service.caloriesByRecipeWithKeyword(keyword);
+            List<Map<String,Object>> listRecipes = service.macrosByRecipeWithKeyword(keyword);
             model.addAttribute("listRecipes",listRecipes);
         }
         else{
 
-            List<Map<String,Object>> listRecipes = service.caloriesByRecipe();
+            List<Map<String,Object>> listRecipes = service.macrosByRecipe();
             model.addAttribute("listRecipes",listRecipes);
         }
 
