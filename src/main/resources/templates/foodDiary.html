@@ -1,22 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Food Diary</title>
 <div th:replace="header :: myHeader"></div>
 
+<h2 class="centerDiv mt-4" th:text="'Food Diary For: '+ ${{americanDate}}"></h2>
+
 <form th:action="@{/myCalendar/load}" th:method="post" th:object="${data}">
-    <div class="centerDiv m-4">
+    <div class="centerDiv m-5">
     <span>
         <input type="date" th:name="diaryDate" th:value="${{selectedDate}}" th:id="diaryDate" >
-<button type="submit">Go To Food Diary</button>
+<button class=" btn-dark"  type="submit">Go To Food Diary</button>
   </span>
     </div>
 </form>
 
+<div class="container centerDiv foodGoals mb-3">
+<div class="row">
+    <div class="leftDiv col">
+        <h3 th:text="'Calorie Goal: '+${calGoal}"></h3>
+    </div>
+
+    <div class="centerDiv col">
+        <div class="progress">
+            <div class="progress-bar progress-bar-success goalsBar" role="progressbar"
+                 aria-valuemin="0" aria-valuemax="100" th:style="'width:'+${calPercent}+'%'" th:text="${calPercent}+'%'">
+            </div>
+        </div>
+    </div>
+    <div class="rightDiv col">
+        <h3 th:text="'Remaining Calories: '+${remainingCal}"></h3>
+    </div>
+
+</div>
+    <div class="row">
+        <div class="leftDiv col">
+            <h3 th:text="'Carb Goal: '+${carbGoal}"></h3>
+        </div>
+
+        <div class="centerDiv col">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success goalsBar" role="progressbar"
+                     aria-valuemin="0" aria-valuemax="100" th:style="'width:'+${carbPercent}+'%'" th:text="${carbPercent}+'%'">
+                </div>
+            </div>
+        </div>
+        <div class="rightDiv col">
+            <h3 th:text="'Remaining Carbs: '+${remainingCarbs}"></h3>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="leftDiv col">
+            <h3 th:text="'Protein Goal: '+${proteinGoal}"></h3>
+        </div>
+
+        <div class="centerDiv col">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success goalsBar" role="progressbar"
+                     aria-valuemin="0" aria-valuemax="100" th:style="'width:'+${proteinPercent}+'%'" th:text="${proteinPercent}+'%'">
+                </div>
+            </div>
+        </div>
+        <div class="rightDiv col">
+            <h3 th:text="'Remaining Protein: '+${remainingProtein}"></h3>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="leftDiv col">
+            <h3 th:text="'Fats Goal: '+${fatsGoal}"></h3>
+        </div>
+
+        <div class="centerDiv col">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success goalsBar" role="progressbar"
+                     aria-valuemin="0" aria-valuemax="100" th:style="'width:'+${fatPercent}+'%'" th:text="${fatPercent}+'%'">
+                </div>
+            </div>
+
+        </div>
+        <div class="rightDiv col">
+            <h3 th:text="'Remaining Fats: '+${remainingFats}"></h3>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
 
 
 <div class="container centerDiv">
-    <div class="row justify-content-md-center">
-        <div class="col-md-auto">
-            <h2><a th:href="@{'/myCalendar/'+${selectedDate}+'/addFood'}">Add Food</a></h2>
+    <div class="row justify-content-center">
+        <div class="col">
+            <h2><a th:href="@{'/myCalendar/'+${selectedDate}+'/addFood'}">Add Food Today</a></h2>
             <table class="table table-striped table-dark">
                 <thead class="thead-dark">
                 <tr>
@@ -44,8 +123,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md-auto">
-            <h2><a th:href="@{'/myCalendar/'+${selectedDate}+'/addRecipe'}">Add Recipe</a></h2>
+        <div class="col-auto">
+            <h2><a th:href="@{'/myCalendar/'+${selectedDate}+'/addRecipe'}">Add Recipe Today</a></h2>
             <table class="table table-striped table-dark">
                 <thead class="thead-dark">
                 <tr>

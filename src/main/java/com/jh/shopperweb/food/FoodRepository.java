@@ -24,4 +24,20 @@ public interface FoodRepository extends JpaRepository<Food,Integer> {
     @Query(value = "Select foods.* from foods inner JOIN users_foods on foods.food_id = users_foods.food_id where users_foods.date=:date and users_foods.user_id=:userId", nativeQuery = true)
     List<Food> findUserFoodsByDate(@Param("date")String date, @Param("userId")Integer userId);
 
+    @Query(value="Select coalesce(sum(foods.calories),0) AS calories From foods inner Join users_foods on foods.food_id = users_foods.food_id inner join users on users.user_id = users_foods.user_id where users_foods.date=:date and users_foods.user_id=:userId",nativeQuery = true)
+    Double sumCalories(@Param("date")String date, @Param("userId")Integer userId);
+
+    @Query(value="Select coalesce(sum(foods.carbs),0) AS carbs From foods inner Join users_foods on foods.food_id = users_foods.food_id inner join users on users.user_id = users_foods.user_id where users_foods.date=:date and users_foods.user_id=:userId",nativeQuery = true)
+    Double sumCarbs(@Param("date")String date, @Param("userId")Integer userId);
+
+    @Query(value="Select coalesce(sum(foods.protein),0) AS protein From foods inner Join users_foods on foods.food_id = users_foods.food_id inner join users on users.user_id = users_foods.user_id where users_foods.date=:date and users_foods.user_id=:userId",nativeQuery = true)
+    Double sumProtein(@Param("date")String date, @Param("userId")Integer userId);
+
+    @Query(value="Select coalesce(sum(foods.fats),0) AS fats From foods inner Join users_foods on foods.food_id = users_foods.food_id inner join users on users.user_id = users_foods.user_id where users_foods.date=:date and users_foods.user_id=:userId",nativeQuery = true)
+    Double sumFat(@Param("date")String date, @Param("userId")Integer userId);
+
+    @Query(value="Select coalesce(sum(foods.price),0) AS price From foods inner Join users_foods on foods.food_id = users_foods.food_id inner join users on users.user_id = users_foods.user_id where users_foods.date=:date and users_foods.user_id=:userId",nativeQuery = true)
+    Double sumPrice(@Param("date")String date, @Param("userId")Integer userId);
+
+
 }

@@ -43,7 +43,7 @@ public class RecipeController {
             model.addAttribute("listRecipes",listRecipes);
         }
         else{
-            /*List<Recipe> listRecipes = service.listAll();*/
+
             List<Map<String,Object>> listRecipes = service.caloriesByRecipe();
             model.addAttribute("listRecipes",listRecipes);
         }

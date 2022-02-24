@@ -3,6 +3,7 @@ package com.jh.shopperweb.user;
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.item.Item;
 import com.jh.shopperweb.recipe.Recipe;
+import com.jh.shopperweb.users_goals.UsersGoals;
 import com.jh.shopperweb.users_foods.UsersFoods;
 import com.jh.shopperweb.users_items.UsersItems;
 import com.jh.shopperweb.users_recipes.UsersRecipes;
@@ -47,6 +48,18 @@ public class User {
 
     @OneToMany(mappedBy = "userId")
     private Set<UsersItems> usersItems;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private UsersGoals usersGoals;
+
+    public UsersGoals getUsersGoals() {
+        return usersGoals;
+    }
+
+    public void setUsersGoals(UsersGoals usersGoals) {
+        this.usersGoals = usersGoals;
+    }
 
     public Set<UsersItems> getUsersItems() {
         return usersItems;

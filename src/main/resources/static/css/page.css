@@ -107,7 +107,8 @@
 }
 
 a:hover{
-    color: white;
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo{
@@ -190,4 +191,16 @@ a:active { text-decoration: none; }
 
     white-space: nowrap;
     width: 10%;
+}
+
+.foodGoals{
+    border:1px solid black;
+}
+
+.goalsBar{
+    background-image:none;
+    background-color: #ba4343;
+    color: black;
+    justify-content: center;
+    text-align: center;
 }

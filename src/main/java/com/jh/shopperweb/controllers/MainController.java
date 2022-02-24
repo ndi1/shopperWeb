@@ -8,7 +8,7 @@ public class MainController {
 
     @GetMapping("")
     public String showHomePage(){
-        return "home";
+        return "redirect:myCalendar";
     }
 
     @GetMapping("/login")

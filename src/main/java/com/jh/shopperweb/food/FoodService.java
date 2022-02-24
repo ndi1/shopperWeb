@@ -58,4 +58,24 @@ public class FoodService {
         return repo.findUserFoodsByDate(date, userId);
     }
 
+    public Double sumCalories(String date, Integer userId){
+       return repo.sumCalories(date,userId);
+    }
+
+    public Double sumCarbs(String date, Integer userId){
+        return repo.sumCarbs(date,userId);
+    }
+
+    public Double sumProtein(String date, Integer userId){
+        return repo.sumProtein(date,userId);
+    }
+
+    public Double sumFats(String date, Integer userId){
+        return repo.sumFat(date,userId);
+    }
+
+    public Double sumPrice(String date, Integer userId){
+        return repo.sumPrice(date,userId);
+    }
+
 }
