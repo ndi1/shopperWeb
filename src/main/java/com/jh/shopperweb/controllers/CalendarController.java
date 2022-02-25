@@ -84,38 +84,38 @@ public class CalendarController {
     @GetMapping("/myCalendar/{foodDate}")
     public String showFoodDate(@PathVariable("foodDate") String foodDate, Model model) throws ParseException {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String curUserName = authentication.getName();
-        User user = myUserDetailsService.loadUser(curUserName);
-        Integer curId = user.getUserId();
+            //Retrieve user's id and username
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String curUserName = authentication.getName();
+            User user = myUserDetailsService.loadUser(curUserName);
+            Integer curId = user.getUserId();
 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(foodDate);
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-        String americanDate = formatter.format(date);
+            //Parse date from URL
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(foodDate);
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            String americanDate = formatter.format(date);
 
-        model.addAttribute("americanDate",americanDate);
-        model.addAttribute("selectedDate",foodDate);
-        model.addAttribute("data", new DiaryFormData());
-        DiaryFormData diaryFormData = new DiaryFormData();
-        diaryFormData.setDiaryDate(foodDate);
+            //Populate model with initial values and form data.
+            model.addAttribute("americanDate",americanDate);
+            model.addAttribute("selectedDate",foodDate);
+            model.addAttribute("data", new DiaryFormData());
+            DiaryFormData diaryFormData = new DiaryFormData();
+            diaryFormData.setDiaryDate(foodDate);
 
-
-
+            //Load user's goals and put them into the model
            UsersGoals usersGoals = usersGoalsService.findUserGoals();
            Double calGoal = usersGoals.getCalorieGoal();
            Double carbGoal = usersGoals.getCarbGoal();
            Double proteinGoal = usersGoals.getProteinGoal();
            Double fatsGoal = usersGoals.getFatGoal();
+
            model.addAttribute("calGoal", calGoal);
-
            model.addAttribute("carbGoal",carbGoal);
-
            model.addAttribute("proteinGoal", proteinGoal);
-
            model.addAttribute("fatsGoal", fatsGoal);
 
 
-
+        //Calculate calories used per day and display the percentage relative to their daily user goal
             Double foodCals = foodService.sumCalories(foodDate,curId);
             Double recipeCalories = recipeService.sumRecipeCalories(foodDate,curId);
 
@@ -126,6 +126,7 @@ public class CalendarController {
             model.addAttribute("remainingCal",remainingCal);
             model.addAttribute("calPercent",calPercent);
 
+        //Calculate carbs used per day and display the percentage relative to their daily user goal
             Double foodCarbs = foodService.sumCarbs(foodDate,curId);
             Double recipeCarbs = recipeService.sumRecipeCarbs(foodDate,curId);
 
@@ -136,6 +137,7 @@ public class CalendarController {
             model.addAttribute("remainingCarbs",remainingCarbs);
             model.addAttribute("carbPercent",carbPercent);
 
+        //Calculate protein used per day and display the percentage relative to their daily user goal
             Double foodProtein = foodService.sumProtein(foodDate,curId);
             Double recipeProtein = recipeService.sumRecipeProtein(foodDate,curId);
 
@@ -146,6 +148,7 @@ public class CalendarController {
             model.addAttribute("remainingProtein",remainingProtein);
             model.addAttribute("proteinPercent",proteinPercent);
 
+        //Calculate fats used per day and display the percentage relative to their daily user goal
             Double foodFats = foodService.sumFats(foodDate,curId);
             Double recipeFats = recipeService.sumRecipeFats(foodDate,curId);
 
@@ -156,24 +159,23 @@ public class CalendarController {
             model.addAttribute("remainingFats",remainingFats);
             model.addAttribute("fatPercent",fatPercent);
 
+        //Calculate fats used per day and display the percentage relative to their daily user goal
             Double foodPrice = foodService.sumPrice(foodDate,curId);
             Double recipePrice = recipeService.sumRecipePrice(foodDate,curId);
             model.addAttribute("totalPrice",foodPrice+recipePrice);
 
 
 
-/*        List<Map<String,Object>> listRecipes = service.caloriesByRecipe();
-        model.addAttribute("listRecipes",listRecipes);*/
+        List<Map<String,Object>> listRecipes = recipeService.macroTotalForRecipes(foodDate,curId);
+        model.addAttribute("listRecipes",listRecipes);
 
+
+        //Add user's daily foods and recipes to the model
         List<Food> foodsByDate = foodService.findUserFoodByDate(foodDate,curId);
         model.addAttribute("foodsByDate", foodsByDate);
 
-
-    List<Recipe> recipesByDate = recipeService.findUserRecipesByDate(foodDate,curId);
-    model.addAttribute("recipesByDate",recipesByDate);
-
-
-
+        List<Recipe> recipesByDate = recipeService.findUserRecipesByDate(foodDate,curId);
+        model.addAttribute("recipesByDate",recipesByDate);
 
 
         return "foodDiary";
@@ -223,6 +225,8 @@ public class CalendarController {
 
     @GetMapping("/myCalendar/{foodDate}/addFood/{foodId}/save")
     public String saveFoodToDay(@PathVariable("foodDate") String date,@PathVariable("foodId") Integer foodId, Model model, String keyword) throws FoodNotFoundException {
+
+
 
 
         model.addAttribute("selectedDate",date);
@@ -282,7 +286,7 @@ public class CalendarController {
         usersFoodsService.deleteFromDay(foodDate,curId,foodId);
 
 
-        return "foodDiary";
+        return "redirect:/myCalendar/"+foodDate;
     }
 
 

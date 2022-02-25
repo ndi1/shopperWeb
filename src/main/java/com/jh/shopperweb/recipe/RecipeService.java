@@ -69,6 +69,11 @@ public class RecipeService {
         return repo.macrosByRecipeWithKeyword(keyword);
     }
 
+    public List<Map<String,Object>> macroTotalForRecipes(String date,Integer userId){
+        return repo.macroTotalsForRecipes(date,userId);
+    }
+
+
     public Double sumRecipeCalories(String date, Integer userId){
         return repo.sumRecipeCalories(date, userId);
     }

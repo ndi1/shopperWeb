@@ -133,14 +133,24 @@
                 <tr>
                     <th>Recipe Name</th>
                     <th>Recipe Description</th>
+                    <th>Calories</th>
+                    <th>Carbs</th>
+                    <th>Fats</th>
+                    <th>Protein</th>
+                    <th>Price</th>
                 </tr>
                 </thead>
                 <tbody>
-                <th:block th:each="recipe : ${recipesByDate}">
+                <th:block th:each="recipe : ${listRecipes}">
                     <tr>
 
-                        <td>[[${recipe.recipeName}]]</td>
-                        <td>[[${recipe.recipeDesc}]]</td>
+                        <td>[[${recipe.recipe_name}]]</td>
+                        <td>[[${recipe.recipe_desc}]]</td>
+                        <td>[[${recipe.calories}]]</td>
+                        <td>[[${recipe.carbs}]] g</td>
+                        <td>[[${recipe.fats}]] g</td>
+                        <td>[[${recipe.protein}]] g</td>
+                        <td>[[${#numbers.formatCurrency(recipe.price)}]]</td>
 
                     </tr>
                 </th:block>
