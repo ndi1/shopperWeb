@@ -4,6 +4,7 @@ package com.jh.shopperweb.food;
 import com.jh.shopperweb.recipe.Recipe;
 import com.jh.shopperweb.user.User;
 import com.jh.shopperweb.users_foods.UsersFoods;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,10 +19,12 @@ import java.util.Set;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer foodId;
         @Column
+        @NotNull
         private String foodName;
         @Column
         private String foodDesc;
         @Column
+        @NotNull
         private Double calories;
         @Column
         private Double carbs;

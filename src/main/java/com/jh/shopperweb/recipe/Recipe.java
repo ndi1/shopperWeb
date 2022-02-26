@@ -3,6 +3,7 @@ package com.jh.shopperweb.recipe;
 import com.jh.shopperweb.food.Food;
 import com.jh.shopperweb.user.User;
 import com.jh.shopperweb.users_recipes.UsersRecipes;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer recipeId;
     @Column
+    @NotNull
     private String recipeName;
     @Column
     private String recipeDesc;

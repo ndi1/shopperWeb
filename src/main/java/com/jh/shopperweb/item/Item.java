@@ -1,6 +1,7 @@
 package com.jh.shopperweb.item;
 
 import com.jh.shopperweb.user.User;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemId;
     @Column
+    @NotNull
     private String itemName;
     @Column
     private String itemDesc;

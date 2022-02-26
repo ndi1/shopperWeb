@@ -184,6 +184,10 @@ public class CalendarController {
 
     @GetMapping("/myCalendar/{foodDate}/addRecipe")
     public String showAddRecipeToDay(@PathVariable("foodDate") String date, Model model, String keyword){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        Integer curId = user.getUserId();
 
 
         model.addAttribute("selectedDate",date);
@@ -192,7 +196,7 @@ public class CalendarController {
             model.addAttribute("listRecipes",recipeService.findByKeyword(keyword));
         }
         else{
-            List<Recipe> listRecipes = recipeService.listAll();
+            List<Map<String,Object>> listRecipes = recipeService.macrosByRecipe();
             model.addAttribute("listRecipes",listRecipes);
         }
 
@@ -225,8 +229,6 @@ public class CalendarController {
 
     @GetMapping("/myCalendar/{foodDate}/addFood/{foodId}/save")
     public String saveFoodToDay(@PathVariable("foodDate") String date,@PathVariable("foodId") Integer foodId, Model model, String keyword) throws FoodNotFoundException {
-
-
 
 
         model.addAttribute("selectedDate",date);
@@ -288,6 +290,21 @@ public class CalendarController {
 
         return "redirect:/myCalendar/"+foodDate;
     }
+
+    @GetMapping("/myCalendar/{foodDate}/{recipeId}/recipe/delete")
+    public String deleteRecipeFromDiary(@PathVariable("foodDate") String foodDate, @PathVariable("recipeId")Integer recipeId) throws UsersFoodsNotFoundException {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String curUserName = authentication.getName();
+        User user = myUserDetailsService.loadUser(curUserName);
+        Integer curId = user.getUserId();
+
+        usersRecipesService.deleteFromDay(foodDate,curId,recipeId);
+
+
+        return "redirect:/myCalendar/"+foodDate;
+    }
+
 
 
 

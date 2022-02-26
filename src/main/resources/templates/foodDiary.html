@@ -138,6 +138,7 @@
                     <th>Fats</th>
                     <th>Protein</th>
                     <th>Price</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -151,6 +152,7 @@
                         <td>[[${recipe.fats}]] g</td>
                         <td>[[${recipe.protein}]] g</td>
                         <td>[[${#numbers.formatCurrency(recipe.price)}]]</td>
+                        <td><a class="h4 mr-3" th:href="@{'/myCalendar/'+${selectedDate}+'/'+${recipe.recipe_id}+'/recipe/delete'}">Remove</a></td>
 
                     </tr>
                 </th:block>

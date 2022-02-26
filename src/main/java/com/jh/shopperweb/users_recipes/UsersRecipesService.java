@@ -33,6 +33,8 @@ public class UsersRecipesService{
 
     }
 
-
+    public void deleteFromDay(String date, Integer userId, Integer recipeId){
+        repo.deleteRecipesFromDay(date,userId,recipeId);
+    }
 
 }
