@@ -6,7 +6,7 @@ import com.jh.shopperweb.user.User;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
+//Entity which describes a user's foods
 @Entity
 @Table (name = "users_foods")
 public class UsersFoods implements Serializable {

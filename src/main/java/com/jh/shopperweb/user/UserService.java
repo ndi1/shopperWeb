@@ -3,12 +3,10 @@ package com.jh.shopperweb.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
-
 import java.util.List;
 import java.util.Optional;
 
+//Service for implementing user queries
 @Service
 public class UserService {
     @Autowired

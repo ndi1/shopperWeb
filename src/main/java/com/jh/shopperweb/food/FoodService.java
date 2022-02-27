@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+//Service layer to implement the Food Repository queries
 @Service
 public class FoodService {
     @Autowired private FoodRepository repo;

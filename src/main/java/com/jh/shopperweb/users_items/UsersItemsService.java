@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+//Service to implement queries related to a user's items
 @Service
 public class UsersItemsService {
 

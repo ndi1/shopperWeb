@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+//Entity for a recipe object
 @Entity
 @Table(name = "recipes")
 public class Recipe {

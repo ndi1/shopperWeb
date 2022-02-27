@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-
+//Controller that handles the viewing, creation, and editing/deleting of a user
 @Controller
 public class UserController {
     @Autowired private UserService service;
@@ -31,6 +31,7 @@ public class UserController {
     @Autowired private UsersGoalsService usersGoalsService;
 
 
+    //Mapping to display all users
     @GetMapping("/users")
     public String showUserList(Model model){
         List<User> listUsers = service.listAll();
@@ -38,6 +39,7 @@ public class UserController {
         return "users";
     }
 
+    //Mapping to show the create user form
     @GetMapping("/users/new")
     public String showNewForm(Model model){
         model.addAttribute("user",new User());
@@ -45,6 +47,7 @@ public class UserController {
         return "user_form";
     }
 
+    //Mapping to save a user
     @PostMapping("/users/save")
     public String saveUser(User user){
         service.save(user);
@@ -59,8 +62,7 @@ public class UserController {
         return "redirect:/login";
     }
 
-
-
+    //Mapping to edit a user
     @GetMapping("/users/edit/{userId}")
     public String showEditForm(@PathVariable("userId") Integer userId, Model model, RedirectAttributes ra){
         try {
@@ -74,6 +76,7 @@ public class UserController {
         }
     }
 
+    //Mapping to delete a user
     @GetMapping("/users/delete/{userId}")
     public String deleteUser(@PathVariable("userId") Integer userId, RedirectAttributes ra){
         try {
@@ -87,6 +90,7 @@ public class UserController {
         return "redirect:/users";
     }
 
+    //Mapping that handles signing up
     @GetMapping("/signup")
     public String signup(Model model){
         model.addAttribute("user",new User());
@@ -94,6 +98,7 @@ public class UserController {
         return "signup";
     }
 
+    //Mapping to display the reset password page
     @GetMapping("/reset")
     public String reset(Model model){
         model.addAttribute("user",new User());
@@ -101,13 +106,14 @@ public class UserController {
         return "reset";
     }
 
-
+    //Mapping to go to the home page
     @GetMapping("/home")
     public String showHome(){
 
         return "redirect:myCalendar";
     }
 
+    //Mapping to display the user goals form
     @GetMapping("/users/myGoals")
     public String showUserGoals(Model model){
 
@@ -124,9 +130,9 @@ public class UserController {
         return "userProfile";
     }
 
+    //Mapping to save a user's goals
     @PostMapping("/myGoals/save")
     public String saveRecipes(UsersGoals usersGoals){
-
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

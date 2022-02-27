@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+//Service to implement queries related to a user's foods
 @Service
 public class UsersFoodsService {
 

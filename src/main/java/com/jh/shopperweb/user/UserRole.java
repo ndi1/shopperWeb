@@ -2,6 +2,7 @@ package com.jh.shopperweb.user;
 
 import javax.persistence.*;
 
+//Entity for user roles
 @Entity
 @Table(name = "user_roles")
 public class UserRole {

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+//User principal for use with Spring Security
 public class UserPrincipal implements UserDetails {
 
     private User user;

@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 
-
+//Entity which describes a user's recipes
 @Entity
 @Table(name = "users_recipes")
 public class UsersRecipes implements Serializable{

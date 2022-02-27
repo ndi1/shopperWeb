@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+//Service layer which implements all queries for recipes
 @Service
 public class RecipeService {
     @Autowired

@@ -2,12 +2,12 @@ package com.jh.shopperweb.users_goals;
 
 import com.jh.shopperweb.user.MyUserDetailsService;
 import com.jh.shopperweb.user.User;
-import com.jh.shopperweb.users_items.UsersItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+//Serive to implement queries for a user's goals
 @Service
 public class UsersGoalsService {
 

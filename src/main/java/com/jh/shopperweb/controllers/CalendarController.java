@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 
+//Handles all mappings related to the daily food log
 @Controller
 public class CalendarController {
 
@@ -60,9 +61,11 @@ public class CalendarController {
     @Autowired
     private UsersGoalsService usersGoalsService;
 
+    //Method to show the daily food log
     @GetMapping("/myCalendar")
     public String showCalendar(Model model){
 
+        //Pre-populate calendar input
         Date selectedDate = new Date();
         model.addAttribute("selectedDate", selectedDate);
         model.addAttribute("data",new DiaryFormData());
@@ -74,13 +77,13 @@ public class CalendarController {
        return "redirect:/myCalendar/"+date;
     }
 
-
+    //Used to handle redirects to user selected dates from the calendar input
     @PostMapping("/myCalendar/load")
     public String foodDiaryDate(DiaryFormData data){
         return "redirect:/myCalendar/"+data.getDiaryDate();
     }
 
-
+    //Displays the food diary for a given date
     @GetMapping("/myCalendar/{foodDate}")
     public String showFoodDate(@PathVariable("foodDate") String foodDate, Model model) throws ParseException {
 
@@ -181,7 +184,7 @@ public class CalendarController {
         return "foodDiary";
     }
 
-
+    //Mapping to allow users to add food to the currently selected date
     @GetMapping("/myCalendar/{foodDate}/addRecipe")
     public String showAddRecipeToDay(@PathVariable("foodDate") String date, Model model, String keyword){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -205,7 +208,7 @@ public class CalendarController {
 
     }
 
-
+    //Mapping to display the foods a user can add to their food diary
     @GetMapping("/myCalendar/{foodDate}/addFood")
     public String showAddFoodToDay(@PathVariable("foodDate") String date, Model model, String keyword){
 
@@ -226,7 +229,7 @@ public class CalendarController {
     }
 
 
-
+    //Mapping to save the chosen food to the chosen date
     @GetMapping("/myCalendar/{foodDate}/addFood/{foodId}/save")
     public String saveFoodToDay(@PathVariable("foodDate") String date,@PathVariable("foodId") Integer foodId, Model model, String keyword) throws FoodNotFoundException {
 
@@ -251,7 +254,7 @@ public class CalendarController {
 
     }
 
-
+    //Mapping to save a recipe to a chosen date
     @GetMapping("/myCalendar/{foodDate}/addRecipe/{recipeId}/save")
     public String saveRecipeToDay(@PathVariable("foodDate") String date,@PathVariable("recipeId") Integer recipeId, Model model, String keyword) throws RecipeNotFoundException {
 
@@ -276,7 +279,7 @@ public class CalendarController {
 
     }
 
-
+    //Mapping to delete a food from the daily food diary
     @GetMapping("/myCalendar/{foodDate}/{foodId}/delete")
     public String deleteFoodFromDiary(@PathVariable("foodDate") String foodDate, @PathVariable("foodId")Integer foodId) throws UsersFoodsNotFoundException {
 
@@ -291,6 +294,7 @@ public class CalendarController {
         return "redirect:/myCalendar/"+foodDate;
     }
 
+    //Mapping to delete a recipe from the food diary
     @GetMapping("/myCalendar/{foodDate}/{recipeId}/recipe/delete")
     public String deleteRecipeFromDiary(@PathVariable("foodDate") String foodDate, @PathVariable("recipeId")Integer recipeId) throws UsersFoodsNotFoundException {
 

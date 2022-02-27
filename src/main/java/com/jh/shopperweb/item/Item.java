@@ -4,7 +4,7 @@ import com.jh.shopperweb.user.User;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-
+////Entity for an item object
 @Entity
 @Table(name = "items")
 public class Item {

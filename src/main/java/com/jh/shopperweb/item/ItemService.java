@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+//Service layer to implement the item repository queries
 @Service
 public class ItemService {
     @Autowired private ItemRepository repo;

@@ -3,6 +3,7 @@ package com.jh.shopperweb.users_foods;
 import java.io.Serializable;
 import java.util.Objects;
 
+//Custom class to describe the user's food composite key
 public class UsersFoodsId implements Serializable {
 
     private Integer foodId;

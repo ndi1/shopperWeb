@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+//Service which implements all queries for a user's recipes
 @Service
 public class UsersRecipesService{
 

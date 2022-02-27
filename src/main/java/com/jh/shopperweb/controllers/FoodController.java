@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+//Controller that handles the viewing, creation, and editing/deleting of a food
 @Controller
 public class FoodController {
     @Autowired private FoodService service;
@@ -25,6 +26,7 @@ public class FoodController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
+    //Display all user created foods
     @GetMapping("/myFoods")
     public String showAllFoodList(Model model, String keyword){
 
@@ -40,7 +42,7 @@ public class FoodController {
         return "myFoods";
     }
 
-
+    //Display the foods created by the currently logged in user
     @GetMapping("/myFoods/personal")
     public String showMyFoodList(Model model, String keyword){
 
@@ -60,7 +62,7 @@ public class FoodController {
         return "myFoodsPersonal";
     }
 
-
+    //Mapping to create a new food
     @GetMapping("/addFoods")
     public String showNewFoodForm(Model model){
         model.addAttribute("food",new Food());
@@ -68,6 +70,7 @@ public class FoodController {
         return "addFoods";
     }
 
+    //Mapping to save a user created food
     @PostMapping("/myFoods/save")
     public String saveFood(Food food){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -78,6 +81,7 @@ public class FoodController {
         return "redirect:/myFoods";
     }
 
+    //Mapping to edit a user created food
     @GetMapping("/myFoods/edit/{foodId}")
     public String showFoodEditForm(@PathVariable("foodId") Integer foodId, Model model, RedirectAttributes ra) {
         try {
@@ -92,6 +96,7 @@ public class FoodController {
         }
     }
 
+    //Mapping to delete a user created food
     @GetMapping("/myFoods/delete/{foodId}")
     public String deleteFood(@PathVariable("foodId") Integer foodId, RedirectAttributes ra){
         try {
@@ -106,6 +111,7 @@ public class FoodController {
     }
 
 
+    //Mapping which displays the add food to day page
     @GetMapping("/myFoods/addToDiary")
     public String addFoodToDiary(Model model, String keyword){
 

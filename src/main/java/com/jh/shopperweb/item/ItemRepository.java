@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+//Repository which handles all custom queries for items
 public interface ItemRepository extends JpaRepository<Item,Integer> {
 
     @Query(value = "Select * from items i where i.item_name like %:keyword% or i.item_desc like %:keyword%", nativeQuery = true)

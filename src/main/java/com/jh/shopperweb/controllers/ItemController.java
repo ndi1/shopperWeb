@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+//Controller that handles the viewing, creation, and editing/deleting of an item
 @Controller
 public class ItemController {
     @Autowired
@@ -29,6 +30,7 @@ public class ItemController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
+    //Mapping which displays all user created items
     @GetMapping("/myItems")
     public String showItemList(Model model, String keyword) {
 
@@ -43,6 +45,7 @@ public class ItemController {
         return "items";
     }
 
+    //Mapping which displays a user's custom items
     @GetMapping("/myItems/personal")
     public String showMyFoodList(Model model, String keyword){
 
@@ -63,7 +66,7 @@ public class ItemController {
     }
 
 
-
+    //Mapping to allow users to create a custom item
     @GetMapping("/addItems")
     public String showNewItemForm(Model model) {
         model.addAttribute("item", new Item());
@@ -71,6 +74,7 @@ public class ItemController {
         return "addItems";
     }
 
+    //Mapping to save a custom item
     @PostMapping("/myItems/save")
     public String saveItem(Item item) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -81,6 +85,7 @@ public class ItemController {
         return "redirect:/myItems";
     }
 
+    //Mapping to edit a user created item
     @GetMapping("/myItems/edit/{itemId}")
     public String showItemEditForm(@PathVariable("itemId") Integer itemId, Model model, RedirectAttributes ra) {
         try {
@@ -95,6 +100,7 @@ public class ItemController {
         }
     }
 
+    //Mapping to delete a user created item
     @GetMapping("/myItems/delete/{itemId}")
     public String deleteItem(@PathVariable("itemId") Integer itemId, RedirectAttributes ra) {
         try {

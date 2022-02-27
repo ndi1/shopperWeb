@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-
+//Repository which contains all queries for a user's foods
 public interface UsersFoodsRepository extends JpaRepository<UsersFoods,Integer> {
 
     @Modifying

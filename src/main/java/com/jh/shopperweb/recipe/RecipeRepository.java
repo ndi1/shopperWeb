@@ -2,16 +2,14 @@ package com.jh.shopperweb.recipe;
 
 
 
-import com.jh.shopperweb.food.Food;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-
-import javax.print.attribute.standard.JobKOctets;
 import java.util.List;
 import java.util.Map;
 
+//Repository which handles all queries for recipes
 public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
 
     @Query(value = "Select * from recipes r where r.recipe_name like %:keyword% or r.recipe_desc like %:keyword%", nativeQuery = true)

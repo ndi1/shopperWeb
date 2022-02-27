@@ -1,9 +1,9 @@
 package com.jh.shopperweb.users_goals;
 
 import com.jh.shopperweb.user.User;
-
 import javax.persistence.*;
 
+//Entity which describes a user's daily macro/calorie goals
 @Entity
 @Table
 public class UsersGoals {

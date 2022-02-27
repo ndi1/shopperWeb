@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+//Controller that handles the viewing, creation, and editing/deleting of a recipe
 @Controller
 public class RecipeController {
     @Autowired
@@ -35,6 +35,7 @@ public class RecipeController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
+    //Mapping to so all user created recipes
     @GetMapping("/myRecipes")
     public String showRecipeList(Model model, String keyword){
 
@@ -51,6 +52,7 @@ public class RecipeController {
         return "myRecipes";
     }
 
+    //Mapping to add a food to a recipe
     @GetMapping("/myRecipes/addFoods/add/{recipeId}/{foodId}")
     public String addFoodToRecipe(@PathVariable("recipeId")Integer recipeId, @PathVariable("foodId") Integer foodId) throws FoodNotFoundException {
         try {
@@ -70,8 +72,7 @@ public class RecipeController {
 
     }
 
-
-
+    //Mapping to delete a user's recipe
     @GetMapping("/myRecipes/delete/{recipeId}")
     public String deleteRecipe(@PathVariable("recipeId") Integer recipeId, RedirectAttributes ra){
         try {
@@ -85,6 +86,7 @@ public class RecipeController {
         return "redirect:/myRecipes";
     }
 
+    //Mapping to create a new user recipe
     @GetMapping("/myRecipes/new")
     public String showNewRecipeForm(Model model){
 
@@ -94,6 +96,7 @@ public class RecipeController {
         return "addRecipes";
     }
 
+    //Mapping to save an edited user recipe
     @PostMapping("myRecipes/save/{recipeId}")
     public String saveEditRecipes(@PathVariable("recipeId")Integer recipeId, @ModelAttribute("recipe") Recipe recipe) throws RecipeNotFoundException {
 
@@ -109,6 +112,7 @@ public class RecipeController {
         return "redirect:/myRecipes";
     }
 
+    //Mapping to save a user created recipe
     @PostMapping("/myRecipes/save")
     public String saveRecipes(Recipe recipe){
 
@@ -123,6 +127,7 @@ public class RecipeController {
         return "redirect:/myRecipes/addFoods/"+recipe.getRecipeId();
     }
 
+    //Mapping to add a food to a recipe
     @GetMapping("/myRecipes/addFoods/{recipeId}")
     public String showAddFoodsToRecipe(@PathVariable("recipeId")Integer recipeId, Model model, String keyword){
         try {
@@ -148,6 +153,7 @@ public class RecipeController {
     }
 
 
+    //Mapping to saved an edited recipe
     @GetMapping("/myRecipes/edit/{recipeId}")
     public String showRecipeEditForm(@PathVariable("recipeId") Integer recipeId, Model model, RedirectAttributes ra) {
         try {
@@ -165,6 +171,7 @@ public class RecipeController {
     }
 
 
+    //Mapping to delete a food from a recipe
     @GetMapping("/myRecipes/addFoods/delete/{recipeId}/{foodId}")
     public String deleteFoodFromRecipe(@PathVariable("recipeId")Integer recipeId, @PathVariable("foodId") Integer foodId) throws FoodNotFoundException {
         try {
@@ -181,6 +188,7 @@ public class RecipeController {
         }
     }
 
+    //Mapping to add a recipe to the daily food log
     @GetMapping("/myRecipes/addToDiary")
     public String addRecipeToDiary(Model model, String keyword){
 
@@ -196,6 +204,7 @@ public class RecipeController {
     }
 
 
+    //Mapping to show a user's personal recipe
     @GetMapping("/myRecipes/personal")
     public String showMyRecipeList(Model model, String keyword){
 

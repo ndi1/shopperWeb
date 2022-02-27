@@ -6,7 +6,7 @@ import com.jh.shopperweb.user.User;
 
 import javax.persistence.*;
 
-
+//Entity which describes a user's items
 @Entity
 @Table(name = "users_items")
 public class UsersItems {
