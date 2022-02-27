@@ -13,17 +13,18 @@ import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(false)
 public class UserRepositoryTests {
 @Autowired private UserRepository repo;
+
 
 @Test
     public void testAddNew(){
     User user = new User();
     user.setEmail("mz.rhenson@gmail.com");
     user.setPassword("12345");
-    user.setFirstName("Mercedez");
-    user.setLastName("Helton");
+    user.setFirstName("Test");
+    user.setLastName("User");
+    user.setUsername("testuser");
 
     User savedUser = repo.save(user);
 
@@ -43,14 +44,14 @@ public class UserRepositoryTests {
 
 @Test
     public void testUpdate(){
-    Integer userId = 1;
+    Integer userId = 11;
     Optional<User> optionalUser = repo.findById(userId);
     User user = optionalUser.get();
-    user.setPassword("Hello!");
+    user.setUsername("Did this test work");
     repo.save(user);
 
     User updatedUser = repo.findById(userId).get();
-    Assertions.assertThat(updatedUser.getPassword()).isEqualTo("Hello!");
+    Assertions.assertThat(updatedUser.getUsername()).isEqualTo("Did this test work");
 }
 
 @Test
@@ -61,13 +62,5 @@ public class UserRepositoryTests {
     System.out.println(optionalUser.get());
 }
 
-@Test
-    public void testDelete(){
-    Integer userId = 2;
-    repo.deleteById(userId);
-
-    Optional<User> optionalUser = repo.findById(userId);
-    Assertions.assertThat(optionalUser).isNotPresent();
-}
 
 }
