@@ -130,6 +130,10 @@ a:hover{
     text-decoration: none;
 }
 
+.errors{
+    color: red;
+}
+
 .centerForms{
     margin: auto;
     width: 24%;

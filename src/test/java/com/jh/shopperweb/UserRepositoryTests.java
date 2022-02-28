@@ -10,12 +10,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTests {
 @Autowired private UserRepository repo;
 
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 @Test
     public void testAddNew(){
@@ -37,9 +40,7 @@ public class UserRepositoryTests {
     Iterable<User> users = repo.findAll();
     Assertions.assertThat(users).hasSizeGreaterThan(0);
 
-    for (User user: users){
-        System.out.println(user);
-    }
+    users.forEach(user -> logger.log(Level.WARNING,user.toString()));
 }
 
 @Test
@@ -59,7 +60,7 @@ public class UserRepositoryTests {
     Integer userId = 2;
     Optional<User> optionalUser = repo.findById(userId);
     Assertions.assertThat(optionalUser).isPresent();
-    System.out.println(optionalUser.get());
+    logger.log(Level.WARNING,optionalUser.get().toString());
 }
 
 

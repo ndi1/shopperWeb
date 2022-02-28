@@ -14,11 +14,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 //Controller that handles the viewing, creation, and editing/deleting of an item
@@ -76,13 +79,19 @@ public class ItemController {
 
     //Mapping to save a custom item
     @PostMapping("/myItems/save")
-    public String saveItem(Item item) {
+    public String saveItem(@Valid @ModelAttribute("item") Item item, BindingResult bindingResult) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String curUserName = authentication.getName();
         User user = myUserDetailsService.loadUser(curUserName);
-        item.setUserItem(user);
-        service.save(item);
-        return "redirect:/myItems";
+
+        if(bindingResult.hasErrors()){
+            return "addItems";
+        }else{
+            item.setUserItem(user);
+            service.save(item);
+            return "redirect:/myItems";
+        }
+
     }
 
     //Mapping to edit a user created item

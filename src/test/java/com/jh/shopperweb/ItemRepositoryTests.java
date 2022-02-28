@@ -13,6 +13,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -20,6 +22,7 @@ public class ItemRepositoryTests {
 @Autowired private ItemRepository repo;
 @Autowired private UserRepository userRepository;
 
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 @Test
     public void testAddNew(){
@@ -43,9 +46,8 @@ public class ItemRepositoryTests {
     Iterable<Item> items = repo.findAll();
     Assertions.assertThat(items).hasSizeGreaterThan(0);
 
-    for (Item item: items){
-        System.out.println(item);
-    }
+    items.forEach(item -> logger.log(Level.WARNING,item.toString()));
+
 }
 
 @Test
@@ -65,7 +67,7 @@ public class ItemRepositoryTests {
     Integer itemId = 4;
     Optional<Item> optionalItem = repo.findById(itemId);
     Assertions.assertThat(optionalItem).isPresent();
-    System.out.println(optionalItem.get());
+    logger.log(Level.WARNING,optionalItem.get().toString());
 }
 
 

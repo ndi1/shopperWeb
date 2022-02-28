@@ -161,4 +161,24 @@ import java.util.Set;
         public void setServType(String servType) {
             this.servType = servType;
         }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "foodId=" + foodId +
+                ", foodName='" + foodName + '\'' +
+                ", foodDesc='" + foodDesc + '\'' +
+                ", calories=" + calories +
+                ", carbs=" + carbs +
+                ", fats=" + fats +
+                ", protein=" + protein +
+                ", servingSize=" + servingSize +
+                ", servings=" + servings +
+                ", servType='" + servType + '\'' +
+                ", price=" + price +
+                ", recipes=" + recipes +
+                ", user=" + user +
+                ", usersFoods=" + usersFoods +
+                '}';
     }
+}
