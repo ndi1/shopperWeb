@@ -241,3 +241,33 @@ td{
     text-decoration: none;
 }
 
+.buttonColor{
+    background-color: #ba4343;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+
+.button:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.btn:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.tablesShadow{
+    -moz-box-shadow: 0 0 5px 5px #888;
+    -webkit-box-shadow: 0 0 5px 5px#888;
+    box-shadow: 0 0 5px 5px #888;
+}
+
+.foodDiaryHeader{
+    font-family:'Galada',cursive;
+    font-size: 25px;
+    text-color: white;
+    text-decoration: none;
+
+}

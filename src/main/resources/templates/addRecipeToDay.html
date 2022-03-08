@@ -4,9 +4,9 @@
 
 
 <div class="container-fluid text-center">
-    <div><h1 class="pageHeader">Manage Recipes</h1></div>
-    <div class="m-2">
-        <a class="h3" th:href="@{/myRecipes/new}">Add New Recipe</a>
+    <div><h1 class="pageHeader mt-3">Add Recipes To Diary</h1></div>
+    <div class="m-3">
+        <a class="h3" th:href="@{/myRecipes/new}"><button class="btn buttonColor btn-lg">Add New Recipe</button></a>
     </div>
     <div>
         <div class="container centerDiv mt-5">
@@ -35,14 +35,14 @@
                 <th:block th:each="recipe : ${listRecipes}">
                     <tr>
 
-                        <td>[[${recipe.recipe_name}]]</td>
-                        <td>[[${recipe.recipe_desc}]]</td>
-                        <td>[[${recipe.calories}]]</td>
-                        <td>[[${recipe.carbs}]] g</td>
-                        <td>[[${recipe.fats}]] g</td>
-                        <td>[[${recipe.protein}]] g</td>
-                        <td>[[${#numbers.formatCurrency(recipe.price)}]]</td>
-                        <td><a class="h4 mr-3" th:href="@{'/myCalendar/'+${selectedDate}+'/addRecipe/'+${recipe.recipe_id}+'/save'}">Add</a></td>
+                        <td class="text-center align-middle">[[${recipe.recipe_name}]]</td>
+                        <td class="text-center align-middle">[[${recipe.recipe_desc}]]</td>
+                        <td class="text-center align-middle">[[${recipe.calories}]]</td>
+                        <td class="text-center align-middle">[[${recipe.carbs}]] g</td>
+                        <td class="text-center align-middle">[[${recipe.fats}]] g</td>
+                        <td class="text-center align-middle">[[${recipe.protein}]] g</td>
+                        <td class="text-center align-middle">[[${#numbers.formatCurrency(recipe.price)}]]</td>
+                        <td class="text-center align-middle"><a class="h4 mr-3" th:href="@{'/myCalendar/'+${selectedDate}+'/addRecipe/'+${recipe.recipe_id}+'/save'}"><img th:src="@{/images/addButton.svg}" height="32px" width="32px"></a></td>
                     </tr>
                 </th:block>
                 </tbody>

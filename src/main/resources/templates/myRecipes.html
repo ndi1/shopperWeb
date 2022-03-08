@@ -9,10 +9,10 @@
   <div class="container centerDiv mt-3">
     <div class="row justify-content-md-center">
       <div class="col-md-auto">
-        <a class="h3" th:href="@{/myRecipes/new}">Add New Recipe</a>
+        <a th:href="@{/myRecipes/new}"><button class="btn buttonColor btn-lg">Add New Recipe</button></a>
       </div>
       <div class="col-md-auto">
-        <a class="h3" th:href="@{/myRecipes/personal}">My Recipes</a>
+        <a class="h3" th:href="@{/myRecipes/personal}"><button class="btn buttonColor btn-lg">My Recipes</button></a>
       </div>
     </div>
   </div>
@@ -29,11 +29,12 @@
       <tr>
         <th>Recipe Name</th>
         <th>Recipe Description</th>
-        <th>Calories</th>
-        <th>Carbs</th>
-        <th>Fats</th>
-        <th>Protein</th>
         <th>Price</th>
+        <th>Calories</th>
+        <th>Carbs(g)</th>
+        <th>Fats(g)</th>
+        <th>Protein(g)</th>
+
       </tr>
       </thead>
       <tbody>
@@ -42,11 +43,12 @@
 
           <td>[[${recipe.recipe_name}]]</td>
           <td>[[${recipe.recipe_desc}]]</td>
-          <td>[[${recipe.calories}]]</td>
-          <td>[[${recipe.carbs}]] g</td>
-          <td>[[${recipe.fats}]] g</td>
-          <td>[[${recipe.protein}]] g</td>
           <td>[[${#numbers.formatCurrency(recipe.price)}]]</td>
+          <td>[[${recipe.calories}]]</td>
+          <td>[[${recipe.carbs}]]</td>
+          <td>[[${recipe.fats}]]</td>
+          <td>[[${recipe.protein}]]</td>
+
 
         </tr>
       </th:block>

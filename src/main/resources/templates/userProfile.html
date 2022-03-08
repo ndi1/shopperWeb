@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="header :: myHeader"></div>
 
-<h1 class="centerDiv mt-4">My Daily Goals</h1>
+<h1 class="centerDiv mt-3 pageHeader">My Daily Goals</h1>
 
 <form class="mt-4"  th:action="@{/myGoals/save}" method="post" th:object="${goals}"
       style="max-width: 500px; margin: 0 auto;">

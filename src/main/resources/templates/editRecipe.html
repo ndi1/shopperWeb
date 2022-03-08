@@ -28,7 +28,7 @@
 </form>
 
 <div class="centerDiv">
-    <a class="h1" th:href="@{'/myRecipes/addFoods/' +${recipeId}}">Add More Foods</a>
+    <a th:href="@{'/myRecipes/addFoods/' +${recipeId}}"><button class="btn buttonColor btn-lg mt-2 mb-2a">Add More Foods</button></a>
 </div>
 
 <div class="container centerDiv mt-3">
@@ -39,9 +39,9 @@
         <th>Food Description</th>
         <th>Price</th>
         <th>Calories</th>
-        <th>Carbs</th>
-        <th>Fats</th>
-        <th>Protein</th>
+        <th>Carbs(g)</th>
+        <th>Fats(g)</th>
+        <th>Protein(g)</th>
         <th></th>
     </tr>
     </thead>
@@ -52,9 +52,9 @@
             <td class="text-center align-middle">[[${food.foodDesc}]]</td>
             <td class="text-center align-middle">$[[${food.price}]]</td>
             <td class="text-center align-middle">[[${food.calories}]] </td>
-            <td class="text-center align-middle">[[${food.carbs}]] g</td>
-            <td class="text-center align-middle">[[${food.fats}]] g</td>
-            <td class="text-center align-middle">[[${food.protein}]] g</td>
+            <td class="text-center align-middle">[[${food.carbs}]]</td>
+            <td class="text-center align-middle">[[${food.fats}]]</td>
+            <td class="text-center align-middle">[[${food.protein}]]</td>
             <td class="text-center align-middle">
                 <a class="h4 mr-3" th:href="@{'/myRecipes/addFoods/delete/' +${recipeId}+'/'+${food.foodId}}"><img th:src="@{/images/deleteButton.svg}"></a>
             </td>
