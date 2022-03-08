@@ -10,6 +10,7 @@ import com.jh.shopperweb.users_recipes.UsersRecipes;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 //Entity for a user
@@ -20,14 +21,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-    @NotNull
+    @NotEmpty
     @Column(nullable = false, unique = true, length=45, name="username")
     private String username;
     @Column(unique = true, nullable = false, length=55)
-    @NotNull
+    @NotEmpty
     private String email;
     @Column(length = 200)
-    @NotNull
+    @NotEmpty
     private String password;
     @Column(length = 45, name = "first_name")
     private String firstName;

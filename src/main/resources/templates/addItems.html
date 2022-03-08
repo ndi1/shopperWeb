@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="header :: myHeader"></div>
 <title>Create Item</title>
+<h1 class="centerDiv mt-3 pageHeader">Create/Edit Item</h1>
 <form class="mt-4" th:action="@{/myItems/save}" method="post" th:object="${item}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{itemId}">

@@ -4,9 +4,10 @@ package com.jh.shopperweb.food;
 import com.jh.shopperweb.recipe.Recipe;
 import com.jh.shopperweb.user.User;
 import com.jh.shopperweb.users_foods.UsersFoods;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,26 +20,31 @@ import java.util.Set;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer foodId;
         @Column
-        @NotNull
+        @NotEmpty(message = "Food name cannot be emtpy.")
         private String foodName;
         @Column
         private String foodDesc;
         @Column
-        @NotNull
+        @NotNull(message = "Calories cannot be empty.")
         private Double calories;
         @Column
+        @NotNull(message = "Carbs cannot be empty.")
         private Double carbs;
         @Column
+        @NotNull(message = "Fats cannot be empty.")
         private Double fats;
         @Column
+        @NotNull(message = "Protein cannot be empty.")
         private Double protein;
         @Column
+        @NotNull
         private Double servingSize;
         @Column
         private Double servings;
         @Column
         private String servType;
         @Column
+        @NotNull(message = "Price cannot be empty.")
         private Double price;
     @ManyToMany(mappedBy = "foods")
     private Set<Recipe> recipes = new HashSet<>();

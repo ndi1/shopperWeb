@@ -6,7 +6,7 @@
 <div class="container-fluid text-center">
 
 
-    <h1 class="centerDiv mt-3">My Items</h1>
+    <h1 class="centerDiv mt-3 pageHeader">My Items</h1>
     <div class="container centerDiv mt-3">
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
@@ -37,13 +37,13 @@
                 <tbody>
                 <th:block th:each="item : ${listItems}">
                     <tr>
-                        <td>[[${item.itemName}]]</td>
-                        <td>[[${item.itemDesc}]]</td>
-                        <td>$[[${item.price}]]</td>
+                        <td class="text-center align-middle">[[${item.itemName}]]</td>
+                        <td class="text-center align-middle">[[${item.itemDesc}]]</td>
+                        <td class="text-center align-middle">$[[${item.price}]]</td>
 
-                        <td>
-                            <a class="h4 mr-3" th:href="@{'/myItems/edit/' +${item.itemId}}">Edit</a>
-                            <a class="h4" th:href="@{'/myItems/delete/' +${item.itemId}}">Delete</a>
+                        <td class="text-center align-middle">
+                            <a class="h4 mr-3" th:href="@{'/myItems/edit/' +${item.itemId}}"><img th:src="@{/images/editIcon.svg}" height="32px" width="32px"></a>
+                            <a class="h4" th:href="@{'/myItems/delete/' +${item.itemId}}"><img th:src="@{/images/deleteButton.svg}"></a>
                         </td>
                     </tr>
                 </th:block>

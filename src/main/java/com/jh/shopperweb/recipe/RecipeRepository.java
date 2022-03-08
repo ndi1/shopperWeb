@@ -1,8 +1,5 @@
 package com.jh.shopperweb.recipe;
 
-
-
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -45,6 +42,6 @@ public interface RecipeRepository extends JpaRepository<Recipe,Integer> {
     @Query(value = "Select coalesce(sum(total.price),0) AS recipePrice From (Select ur.*, coalesce(sum(f.price),0) as price from users_recipes ur inner join recipes r on r.recipe_id=ur.recipe_id inner join recipes_foods rf on rf.recipe_id=r.recipe_id inner join foods f on f.food_id=rf.food_id group by ur.ur_id having ur.date=:date and ur.user_id=:userId) as total",nativeQuery = true)
     Double sumRecipePrice(@Param("date")String date, @Param("userId")Integer userId);
 
-    @Query(value = "Select total.recipe_id,total.recipe_desc,total.recipe_name,coalesce(sum(total.calories),0) AS calories,coalesce(sum(total.fats),0) AS fats,coalesce(sum(total.protein),0) AS protein,coalesce(sum(total.carbs),0) AS carbs,coalesce(sum(total.price),0) AS price from (Select FBR.recipe_id,recipe_desc,recipe_name,foods.* from (Select dailyRecipes.recipe_id, dailyRecipes.recipe_desc,dailyRecipes.recipe_name, recipes_foods.food_id from (Select recipes.* from recipes inner JOIN users_recipes on recipes.recipe_id = users_recipes.recipe_id where users_recipes.date=:date and users_recipes.user_id=:userId) as dailyRecipes inner join recipes_foods on dailyRecipes.recipe_id = recipes_foods.recipe_id) as FBR inner join foods on foods.food_id=FBR.food_id) as total group by recipe_id;",nativeQuery = true)
+    @Query(value = "Select total.recipe_id,total.recipe_desc,total.recipe_name,coalesce(sum(total.calories),0) AS calories,coalesce(sum(total.fats),0) AS fats,coalesce(sum(total.protein),0) AS protein,coalesce(sum(total.carbs),0) AS carbs,coalesce(sum(total.price),0) AS price from (Select FBR.recipe_id,recipe_desc,recipe_name,foods.* from (Select dailyRecipes.recipe_id, dailyRecipes.recipe_desc,dailyRecipes.recipe_name, recipes_foods.food_id from (Select recipes.* from recipes inner JOIN users_recipes on recipes.recipe_id = users_recipes.recipe_id where users_recipes.date=:date and users_recipes.user_id=:userId) as dailyRecipes inner join recipes_foods on dailyRecipes.recipe_id = recipes_foods.recipe_id) as FBR inner join foods on foods.food_id=FBR.food_id) as total group by recipe_id",nativeQuery = true)
     List<Map<String, Object>> macroTotalsForRecipes(@Param("date")String date, @Param("userId")Integer userId);
 }

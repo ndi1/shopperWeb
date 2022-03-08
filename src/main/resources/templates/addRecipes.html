@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="header :: myHeader"></div>
 <title>Create Recipe</title>
-
+<h1 class="centerDiv mt-3 pageHeader">Create New Recipe</h1>
 <form class="mt-4" th:action="@{/myRecipes/save}" method="post" th:object="${recipe}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{recipeId}">
@@ -25,7 +25,12 @@
             <button type="reset" class="btn btn-secondary m-2" ><a th:href="@{/myRecipes}" class="navStyles">Cancel</a></button>
         </div>
     </div>
+    </div>
+    <div class="centerDiv errors mt-2" th:if="${#fields.hasErrors('recipeName')}" th:errors="*{recipeName}"></div>
+
+    </div>
 </form>
+
 
 
 </div>

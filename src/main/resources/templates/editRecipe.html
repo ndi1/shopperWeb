@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <div th:replace="header :: myHeader"></div>
 <title>Edit Recipe</title>
-
-<form class="mt-4 mb-2" th:action="@{'/myRecipes/save/' +${recipeId}}" method="post" th:object="${recipe}"
+<div><h1 class="pageHeader mt-3 centerDiv">Edit Recipe</h1></div>
+<form class="mt-3 mb-3" th:action="@{'/myRecipes/save/' +${recipeId}}" method="post" th:object="${recipe}"
       style="max-width: 500px; margin: 0 auto;">
     <input type="hidden" th:field="*{recipeId}">
     <div class="border border-secondary rounded p-3">
@@ -48,15 +48,15 @@
     <tbody>
     <th:block th:each="food : ${listFoods}">
         <tr>
-            <td>[[${food.foodName}]]</td>
-            <td>[[${food.foodDesc}]]</td>
-            <td>$[[${food.price}]]</td>
-            <td>[[${food.calories}]] </td>
-            <td>[[${food.carbs}]] g</td>
-            <td>[[${food.fats}]] g</td>
-            <td>[[${food.protein}]] g</td>
-            <td>
-                <a class="h4 mr-3" th:href="@{'/myRecipes/addFoods/delete/' +${recipeId}+'/'+${food.foodId}}">Remove</a>
+            <td class="text-center align-middle">[[${food.foodName}]]</td>
+            <td class="text-center align-middle">[[${food.foodDesc}]]</td>
+            <td class="text-center align-middle">$[[${food.price}]]</td>
+            <td class="text-center align-middle">[[${food.calories}]] </td>
+            <td class="text-center align-middle">[[${food.carbs}]] g</td>
+            <td class="text-center align-middle">[[${food.fats}]] g</td>
+            <td class="text-center align-middle">[[${food.protein}]] g</td>
+            <td class="text-center align-middle">
+                <a class="h4 mr-3" th:href="@{'/myRecipes/addFoods/delete/' +${recipeId}+'/'+${food.foodId}}"><img th:src="@{/images/deleteButton.svg}"></a>
             </td>
         </tr>
     </th:block>

@@ -14,11 +14,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +47,6 @@ public class RecipeController {
             model.addAttribute("listRecipes",listRecipes);
         }
         else{
-
             List<Map<String,Object>> listRecipes = service.macrosByRecipe();
             model.addAttribute("listRecipes",listRecipes);
         }
@@ -114,11 +116,15 @@ public class RecipeController {
 
     //Mapping to save a user created recipe
     @PostMapping("/myRecipes/save")
-    public String saveRecipes(Recipe recipe){
+    public String saveRecipes(@Valid @ModelAttribute("recipe") Recipe recipe, BindingResult bindingResult){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String curUserName = authentication.getName();
         User user = myUserDetailsService.loadUser(curUserName);
+
+        if (bindingResult.hasErrors()){
+            return "addRecipes";
+        }
         recipe.setUserRecipe(user);
         Set<Food> recipeFoods = recipe.getFoods();
         recipe.setFoods(recipeFoods);

@@ -9,10 +9,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" href="/css/page.css" th:href="@{/css/page.css}"/>
 
-    <div class="container-fluid p-2 mainHeader text-white">
+    <div class="container-fluid pb-2 mainHeader text-white w-100">
         <div class="row">
             <div class="col leftDiv ">
-                    <a class="nav-link active username vertical-center anchorInline" style="color: white;text-decoration: none" th:href="@{/logout}">Logout</a>
+                   <a class="nav-link active username vertical-center anchorInline" style="color: white;text-decoration: none" th:href="@{/logout}"><u>Logout</u></a>
              </div>
             <div class="col mainHeader centerDiv ">
                 <h1><a th:href="@{/home}" class="headers centerDiv" style="color: white;text-decoration: none">Shopper</a> <img  src="../static/images/logo.png"
@@ -20,7 +20,7 @@
             </div>
             <div class="col rightDiv vertical-center">
                 <a th:href="@{/users/myGoals}" style="color: white;text-decoration: none">
-                <span class="username pr-3" th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                <u><span class="username pr-3" th:text="${#authentication.getPrincipal().getUsername()}"></span></u>
                     <img th:src="@{'/images/photos/'+${#authentication.getPrincipal().getUsername()}+'.jpg'}" height="50" width="50" class="rounded-circle">
                 </a>
             </div>
@@ -30,27 +30,27 @@
 
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark navigation">
-    <div class="container-fluid centerDiv">
+    <div class="container centerDiv">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link active" th:href="@{/myRecipes}"><img src="../static/images/journal-richtext.svg"
                                                                         th:src="@{/images/journal-richtext.svg}"></a>
-                <div class="navText">Recipes</div>
+                <div class="navText" style="color: white">Recipes</div>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href="@{/myFoods}"><img src="../static/images/bag.svg"
                                                                       th:src="@{/images/bag.svg}"></a>
-                <div class="navText">Foods</div>
+                <div class="navText" style="color: white">Foods</div>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href="@{/myCalendar}"><img src="../static/images/calendar-week.svg"
                                                                      th:src="@{/images/calendar-week.svg}"></a>
-                <div class="navText">Calendar</div>
+                <div class="navText" style="color: white">Calendar</div>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" th:href="@{/myItems}"><img src="../static/images/shop.svg"
                                                                       th:src="@{/images/shop.svg}"></a>
-                <div class="navText">Items</div>
+                <div class="navText" style="color: white">Items</div>
             </li>
 
         </ul>

@@ -3,7 +3,7 @@
 <div th:replace="header :: myHeader"></div>
 
 <div class="container-fluid text-center">
-    <div><h1>Add Foods To Recipe</h1></div>
+    <div><h1 class="pageHeader mt-3">Add Foods To Recipe</h1></div>
     <div class="m-2">
         <a class="h3" th:href="@{/addFoods}">Add New Food</a>
     </div>
@@ -31,15 +31,15 @@
             <tbody>
             <th:block th:each="food : ${listFoods}">
                 <tr>
-                    <td>[[${food.foodName}]]</td>
-                    <td>[[${food.foodDesc}]]</td>
-                    <td>$[[${food.price}]]</td>
-                    <td>[[${food.calories}]] </td>
-                    <td>[[${food.carbs}]] g</td>
-                    <td>[[${food.fats}]] g</td>
-                    <td>[[${food.protein}]] g</td>
-                    <td>
-                       <a class="h4 mr-3" th:href="@{'/myRecipes/addFoods/add/' +${recipeId}+'/'+${food.foodId}}">Add</a>
+                    <td class="text-center align-middle">[[${food.foodName}]]</td>
+                    <td class="text-center align-middle">[[${food.foodDesc}]]</td>
+                    <td class="text-center align-middle">$[[${food.price}]]</td>
+                    <td class="text-center align-middle">[[${food.calories}]] </td>
+                    <td class="text-center align-middle">[[${food.carbs}]] g</td>
+                    <td class="text-center align-middle">[[${food.fats}]] g</td>
+                    <td class="text-center align-middle">[[${food.protein}]] g</td>
+                    <td class="text-center align-middle">
+                       <a class="h4 mr-3" th:href="@{'/myRecipes/addFoods/add/' +${recipeId}+'/'+${food.foodId}}"><img th:src="@{/images/addButton.svg}" height="32px" width="32px"></a>
 
                     </td>
                 </tr>

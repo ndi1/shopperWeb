@@ -6,6 +6,7 @@ import com.jh.shopperweb.users_recipes.UsersRecipes;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer recipeId;
     @Column
-    @NotNull
+    @NotEmpty(message="Recipe name cannot be empty.")
     private String recipeName;
     @Column
     private String recipeDesc;
